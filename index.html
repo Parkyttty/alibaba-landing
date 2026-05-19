@@ -107,6 +107,17 @@
     .kw-chip.g{background:#1a1a1a;color:white}
     .kw-chip.k{background:#FFF0E8;color:#FF6600}
 
+    /* TRAFFIC TOOLTIP CHIPS */
+    .tr-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+    .tr-chip{position:relative;display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:999px;font-size:13px;cursor:default;border:1.5px solid #ffe0cc;background:#fff8f4;user-select:none}
+    .tr-chip .tr-label{color:#666;font-weight:500}
+    .tr-chip .tr-pct{font-weight:900;color:#FF6600}
+    .tr-chip.tr-over .tr-pct{color:#1a8c3b}
+    .tr-chip .tr-ico{font-size:11px;color:#ccc;margin-left:2px}
+    .tr-chip .tr-tip{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#1a1a1a;color:white;padding:12px 16px;border-radius:10px;font-size:12px;line-height:1.6;width:220px;white-space:normal;z-index:20;pointer-events:none;text-align:left}
+    .tr-chip .tr-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#1a1a1a}
+    .tr-chip:hover .tr-tip{display:block}
+
     /* OTHER SECTIONS */
     .three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .method-card{background:white;border-radius:14px;padding:32px 28px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
@@ -393,15 +404,15 @@ function renderIndustry(d, category) {
   }
   function gkw(i){ return `<span class="kw-chip g"># ${d['gkw_'+i]||'—'}</span>`; }
   function kkw(i){ return `<span class="kw-chip k"># ${d['kw_'+i]||'—'}</span>`; }
-  function trRow(label, kr, all){
+  function trChip(label, kr, all, tipText){
     var ratio = all > 0 ? Math.round(kr/all*100) : 0;
-    var w = Math.min(ratio, 100)+'%';
-    var badge = ratio >= 100 ? '<span class="tr-badge">글로벌 평균 초과</span>' : '';
-    return `<div class="tr-row">
-      <span class="tr-name">${label}</span>
-      <div class="c-bar-wrap"><div class="c-bar k" style="width:${w}"></div></div>
-      <span class="c-val k">${ratio}% ${badge}</span>
-    </div>`;
+    var over  = ratio >= 100 ? ' tr-over' : '';
+    return `<span class="tr-chip${over}">
+      <span class="tr-label">${label}</span>
+      <span class="tr-pct">${ratio}%</span>
+      <span class="tr-ico">ⓘ</span>
+      <span class="tr-tip">${tipText}</span>
+    </span>`;
   }
 
   var trSpvKr = parseFloat(d['tr_shop_pv_kr'])||0;
@@ -412,11 +423,11 @@ function renderIndustry(d, category) {
   var trImAll = parseFloat(d['tr_imps_all'])||1;
   var trafficBlk = trSpvKr > 0 ? `
     <div class="ind-blk">
-      <div class="blk-title">KR 셀러 플랫폼 트래픽 지표 <span class="note">글로벌 평균 대비 · ggs-crm</span></div>
-      <div class="c-list">
-        ${trRow('숍 방문 지수', trSpvKr, trSpvAll)}
-        ${trRow('활성 바이어 지수', trAbKr, trAbAll)}
-        ${trRow('노출 지수', trImKr, trImAll)}
+      <div class="blk-title">KR 셀러 플랫폼 트래픽 지표 <span class="note">글로벌 평균 대비 · 마우스 올리면 설명</span></div>
+      <div class="tr-chips">
+        ${trChip('숍 방문 지수', trSpvKr, trSpvAll, '바이어가 KR 셀러 숍 페이지를 직접 방문한 횟수 지수. 글로벌 평균 100% 기준으로 KR 셀러의 상대적 방문 유입 수준을 나타냅니다.')}
+        ${trChip('활성 바이어 지수', trAbKr, trAbAll, 'RFQ 제출·문의·견적 요청 등 구매 의향 액션을 취한 바이어 수 지수. 단순 방문이 아닌 실제 관심 바이어 수 기준입니다.')}
+        ${trChip('노출 지수', trImKr, trImAll, '검색 결과·카테고리 페이지에서 KR 셀러 제품이 노출된 횟수 지수. 100% 초과 시 글로벌 평균보다 더 많이 노출되고 있음을 의미합니다.')}
       </div>
     </div>` : '';
 
