@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alibaba.com — 글로벌 수출 파트너</title>
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6356130545"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var _p = new URLSearchParams(location.search);
+    var _lid = _p.get('utm_content') || '';
+    var _cat = _p.get('category') || '';
+    gtag('config', 'G-6356130545', { user_properties: { lead_id: _lid } });
+    if (_lid) {
+      gtag('event', 'landing_page_view', {
+        lead_id: _lid, category: _cat,
+        event_category: 'outbound_email', event_label: _lid
+      });
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Noto Sans KR',-apple-system,sans-serif;color:#1a1a1a;line-height:1.5}
+
+    /* HERO */
+    .hero{background:#FF6600;padding:48px 60px 0}
+    .hero-nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:64px}
+    .hero-logo{background:white;color:#FF6600;font-weight:900;font-size:17px;padding:10px 26px;border-radius:999px}
+    .hero-byline{color:rgba(255,255,255,.9);font-size:14px}
+    .hero-title{color:white;font-size:clamp(52px,7.5vw,90px);font-weight:900;line-height:1.05;letter-spacing:-.02em;margin-bottom:28px}
+    .hero-sub1{color:white;font-size:18px;margin-bottom:6px}
+    .hero-sub2{color:white;font-size:17px;font-weight:700;margin-bottom:64px}
+    .stats-bar{background:#C04D00;margin:0 -60px;padding:28px 60px;display:flex;justify-content:space-around;align-items:center}
+    .stats-bar .stat{text-align:center;color:white}
+    .stats-bar .stat-num{display:block;font-size:30px;font-weight:900}
+    .stats-bar .stat-lbl{display:block;font-size:12px;opacity:.8;margin-top:2px}
+    .stats-bar .divider{width:1px;height:36px;background:rgba(255,255,255,.25)}
+
+    /* SECTION */
+    .sec{padding:80px 60px}
+    .sec.gray{background:#f7f7f7}
+    .sec.white{background:#fff}
+    .sec.dark{background:#1a1a1a;color:white}
+    .sec-label{font-size:12px;letter-spacing:.12em;color:#999;margin-bottom:10px;text-transform:uppercase}
+    .sec.dark .sec-label{color:#666}
+    .sec-title{font-size:clamp(28px,3.5vw,44px);font-weight:900;line-height:1.2;letter-spacing:-.02em;margin-bottom:8px}
+    .sec-sub{font-size:15px;color:#777;margin-bottom:48px}
+
+    /* INDUSTRY BOX */
+    .ind-box{border:2px solid #FF6600;border-radius:16px;overflow:hidden;background:white}
+    .ind-topbar{background:#FF6600;padding:20px 36px;display:flex;justify-content:space-between;align-items:center}
+    .ind-topbar-title{color:white;font-size:18px;font-weight:900}
+    .ind-topbar-date{color:rgba(255,255,255,.8);font-size:12px}
+    .ind-hero-row{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #f0f0f0}
+    .ind-hero-cell{padding:28px 36px}
+    .ind-hero-cell:first-child{border-right:1px solid #f0f0f0}
+    .ind-hero-lbl{font-size:11px;color:#aaa;letter-spacing:.08em;margin-bottom:8px;text-transform:uppercase}
+    .ind-hero-val{font-size:36px;font-weight:900;color:#FF6600;line-height:1.1}
+    .ind-hero-val.dark{color:#1a1a1a}
+    .ind-hero-sub{font-size:12px;color:#bbb;margin-top:4px}
+    .sec-head{padding:14px 36px;display:flex;align-items:center;gap:14px}
+    .sec-head.g{background:#1a1a1a;border-top:1px solid #2a2a2a}
+    .sec-head.k{background:#FFF5EE;border-top:2px solid #FF6600}
+    .sh-badge{font-size:10px;font-weight:700;padding:4px 12px;border-radius:999px;letter-spacing:.06em;background:#FF6600;color:white}
+    .sh-title{font-size:14px;font-weight:700}
+    .g .sh-title{color:white}
+    .k .sh-title{color:#1a1a1a}
+    .sh-sub{font-size:11px}
+    .g .sh-sub{color:#888}
+    .k .sh-sub{color:#aaa}
+    .ind-blk{padding:24px 36px;border-bottom:1px solid #f0f0f0}
+    .ind-blk:last-child{border-bottom:none}
+    .blk-title{font-size:13px;font-weight:700;color:#444;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .blk-title .note{font-size:10px;color:#bbb;font-weight:400}
+    .c-list{display:flex;flex-direction:column;gap:11px}
+    .c-row{display:flex;align-items:center;gap:10px}
+    .c-rank{font-size:11px;font-weight:700;color:#ccc;min-width:18px;text-align:right}
+    .c-name{font-size:13px;font-weight:700;min-width:110px}
+    .c-bar-wrap{flex:1;background:#f0f0f0;border-radius:999px;height:7px}
+    .c-bar{border-radius:999px;height:7px}
+    .c-bar.g{background:#1a1a1a}
+    .c-bar.k{background:#FF6600}
+    .c-val{font-size:12px;font-weight:700;min-width:50px;text-align:right;white-space:nowrap}
+    .c-val.g{color:#1a1a1a}
+    .c-val.k{color:#FF6600}
+    .sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .sc-card{border-radius:10px;padding:14px 16px}
+    .sc-card.dark{background:#1a1a1a}
+    .sc-card.light{background:#f7f7f7}
+    .sc-name{font-size:13px;font-weight:700;margin-bottom:5px;line-height:1.3}
+    .sc-card.dark .sc-name{color:white}
+    .sc-meta{font-size:11px;color:#888;margin-bottom:4px}
+    .sc-card.dark .sc-meta{color:#666}
+    .sc-ctry{font-size:11px;color:#aaa;line-height:1.4}
+    .sc-card.dark .sc-ctry{color:#555}
+    .sc-opp{font-size:11px;color:#aaa}
+    .sc-yoy{font-size:12px;font-weight:700;color:#1a8c3b;margin-top:4px}
+    .kw-chips{display:flex;flex-wrap:wrap;gap:8px}
+    .kw-chip{border-radius:6px;padding:7px 16px;font-size:13px;font-weight:700}
+    .kw-chip.g{background:#1a1a1a;color:white}
+    .kw-chip.k{background:#FFF0E8;color:#FF6600}
+
+    /* OTHER SECTIONS */
+    .three-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .method-card{background:white;border-radius:14px;padding:32px 28px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+    .method-icon{font-size:30px;margin-bottom:14px}
+    .method-name{font-size:20px;font-weight:700;margin-bottom:20px;padding-bottom:16px;border-bottom:1.5px solid #eee}
+    .m-row{margin-bottom:14px}
+    .m-row-lbl{font-size:11px;color:#aaa;margin-bottom:2px}
+    .m-row-val{font-size:15px;font-weight:700}
+    .tbl-wrap{overflow-x:auto;margin-top:40px}
+    .compare-tbl{width:100%;border-collapse:collapse;min-width:600px}
+    .compare-tbl thead tr{background:#1a1a1a}
+    .compare-tbl thead th{padding:16px 20px;text-align:left;font-size:14px;font-weight:700;color:white}
+    .compare-tbl thead th.hl{background:#FF6600}
+    .compare-tbl tbody tr{border-bottom:1px solid #e8e8e8}
+    .compare-tbl tbody tr:nth-child(odd){background:#fafafa}
+    .compare-tbl tbody td{padding:15px 20px;font-size:14px}
+    .compare-tbl tbody td:first-child{font-weight:600;color:#555}
+    .compare-tbl tbody td.hl{color:#FF6600;font-weight:700}
+    .tbl-note{background:#FFF4EE;border-radius:8px;padding:14px 20px;margin-top:20px;font-size:14px;color:#CC5200}
+    .six-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+    .stat-card{background:white;border-radius:14px;padding:30px 28px;border-top:4px solid #FF6600;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+    .stat-card-num{font-size:38px;font-weight:900;color:#FF6600;margin-bottom:6px}
+    .stat-card-name{font-size:15px;font-weight:700;margin-bottom:3px}
+    .stat-card-sub{font-size:12px;color:#999}
+    .two-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .svc-card{border-radius:14px;padding:36px 32px}
+    .svc-card.dark-bg{background:#1a1a1a;color:white}
+    .svc-card.orange-bg{background:#FF6600;color:white}
+    .svc-tag{font-size:12px;font-weight:700;margin-bottom:18px;opacity:.75}
+    .svc-title{font-size:21px;font-weight:900;line-height:1.3;margin-bottom:14px}
+    .svc-desc{font-size:13px;line-height:1.75;opacity:.8;margin-bottom:24px}
+    .svc-list{list-style:none}
+    .svc-list li{padding:12px 0;border-top:1px solid rgba(255,255,255,.12);font-size:13px}
+    .svc-list li strong{display:block;font-weight:700;margin-bottom:2px}
+    .svc-list li span{opacity:.65;font-size:12px}
+    .svc-note{margin-top:16px;background:#1a1a1a;color:white;border-radius:8px;padding:15px 24px;font-size:13px;text-align:center}
+    .roadmap-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px}
+    .road-card{background:white;border-radius:14px;padding:24px 18px;box-shadow:0 2px 14px rgba(0,0,0,.06)}
+    .road-phase{display:inline-block;background:#FF6600;color:white;font-size:11px;font-weight:700;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+    .road-title{font-size:14px;font-weight:700;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid #eee;line-height:1.4}
+    .road-items{list-style:none;margin-bottom:18px}
+    .road-items li{font-size:12px;color:#555;padding:3px 0 3px 14px;position:relative}
+    .road-items li::before{content:'●';position:absolute;left:0;color:#FF6600;font-size:7px;top:7px}
+    .road-star{text-align:center;font-size:12px;font-weight:700;color:#FF6600}
+    .road-star.final{background:#FF6600;color:white;padding:7px;border-radius:6px}
+    .cta-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .cta-big{font-size:clamp(32px,4.5vw,54px);font-weight:900;line-height:1.12;letter-spacing:-.02em;margin-bottom:20px}
+    .cta-big .orange{color:#FF6600}
+    .cta-tagline{font-size:15px;color:#888;margin-bottom:32px}
+    .am-label{font-size:11px;color:#666;margin-bottom:5px}
+    .am-name{font-size:19px;font-weight:700}
+    .am-title{font-size:13px;color:#777}
+    .cta-stats-list{display:flex;flex-direction:column;gap:14px}
+    .cta-stat-row{display:flex;align-items:center;gap:18px;background:rgba(255,255,255,.06);border-radius:10px;padding:16px 20px}
+    .cta-stat-num{font-size:26px;font-weight:900;color:#FF6600;min-width:90px}
+    .cta-stat-lbl{font-size:14px;color:#bbb}
+    footer{background:#111;padding:22px 60px;display:flex;justify-content:space-between;align-items:center}
+    footer .copy{font-size:11px;color:#555}
+    footer .logo{font-size:15px;font-weight:700;color:#FF6600}
+
+    /* Loading */
+    #loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#FF6600;color:white;gap:20px}
+    #loading .spin{width:40px;height:40px;border:4px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite}
+    #loading .msg{font-size:16px;font-weight:700;opacity:.9}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    #main{display:none}
+
+    @media(max-width:900px){
+      .sec{padding:60px 28px}.hero{padding:40px 28px 0}
+      .stats-bar{margin:0 -28px;padding:22px 28px;flex-wrap:wrap;gap:16px}
+      .three-grid,.six-grid,.roadmap-grid{grid-template-columns:1fr 1fr}
+      .two-grid,.cta-inner{grid-template-columns:1fr;gap:24px}
+      .ind-hero-row{grid-template-columns:1fr}
+      .ind-hero-cell:first-child{border-right:none;border-bottom:1px solid #f0f0f0}
+      .sc-grid{grid-template-columns:1fr 1fr}
+      footer{padding:18px 28px}
+    }
+    @media(max-width:560px){
+      .three-grid,.six-grid,.roadmap-grid,.sc-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="loading">
+  <div class="spin"></div>
+  <div class="msg">수요 데이터를 불러오는 중...</div>
+</div>
+
+<div id="main">
+
+<!-- HERO -->
+<div class="hero">
+  <nav class="hero-nav">
+    <div class="hero-logo">Alibaba.com</div>
+    <div class="hero-byline">박영운 AM &nbsp;|&nbsp; Alibaba.com Korea</div>
+  </nav>
+  <h1 class="hero-title">Go Global.<br>Go Alibaba.com.</h1>
+  <p class="hero-sub1">글로벌 수출, 지금 바로 시작할 수 있습니다.</p>
+  <p class="hero-sub2">5,000만 명의 바이어가 기다리는 세계 최대 B2B 플랫폼</p>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-num">50M+</span><span class="stat-lbl">활성 바이어</span></div>
+    <div class="divider"></div>
+    <div class="stat"><span class="stat-num">200+</span><span class="stat-lbl">전 세계 국가</span></div>
+    <div class="divider"></div>
+    <div class="stat"><span class="stat-num">200M+</span><span class="stat-lbl">등록 제품</span></div>
+    <div class="divider"></div>
+    <div class="stat"><span class="stat-num">7,600+</span><span class="stat-lbl">제품 카테고리</span></div>
+    <div class="divider"></div>
+    <div class="stat"><span class="stat-num">26+</span><span class="stat-lbl">운영 연혁(년)</span></div>
+  </div>
+</div>
+
+<!-- INDUSTRY DEMAND (동적 렌더링) -->
+<div class="sec white">
+  <div class="sec-label">Market Insight</div>
+  <h2 class="sec-title">귀사 산업의<br>글로벌 수요 동향</h2>
+  <p class="sec-sub">Alibaba.com 플랫폼 실제 데이터 기반 — 글로벌 RFQ 수요 / 한국 셀러 현황</p>
+  <div id="industry-section"></div>
+</div>
+
+<!-- COMPARISON -->
+<div class="sec gray">
+  <div class="sec-label">What's Alibaba.com</div>
+  <h2 class="sec-title">해외 시장 공략,<br>방식이 달라졌습니다.</h2>
+  <p class="sec-sub">세 가지 흔한 수출 방식, 각각의 현실</p>
+  <div class="three-grid">
+    <div class="method-card"><div class="method-icon">✈️</div><div class="method-name">박람회</div><div class="m-row"><div class="m-row-lbl">비용</div><div class="m-row-val">회당 $20,000~50,000</div></div><div class="m-row"><div class="m-row-lbl">빈도</div><div class="m-row-val">연 1~2회</div></div><div class="m-row"><div class="m-row-lbl">도달</div><div class="m-row-val">수백 명 (혼재)</div></div><div class="m-row"><div class="m-row-lbl">지속성</div><div class="m-row-val">행사 종료 후 0</div></div></div>
+    <div class="method-card"><div class="method-icon">🤝</div><div class="method-name">에이전트·바이어</div><div class="m-row"><div class="m-row-lbl">마진</div><div class="m-row-val">20~30% 손실</div></div><div class="m-row"><div class="m-row-lbl">채널</div><div class="m-row-val">단일 의존</div></div><div class="m-row"><div class="m-row-lbl">컨트롤</div><div class="m-row-val">불가</div></div><div class="m-row"><div class="m-row-lbl">확장</div><div class="m-row-val">인맥 한계</div></div></div>
+    <div class="method-card"><div class="method-icon">💻</div><div class="method-name">자체 온라인</div><div class="m-row"><div class="m-row-lbl">트래픽</div><div class="m-row-val">0에서 시작</div></div><div class="m-row"><div class="m-row-lbl">신뢰도</div><div class="m-row-val">검증 없음</div></div><div class="m-row"><div class="m-row-lbl">비용</div><div class="m-row-val">광고·개발 별도</div></div><div class="m-row"><div class="m-row-lbl">도달</div><div class="m-row-val">글로벌 한계</div></div></div>
+  </div>
+</div>
+
+<div class="sec white">
+  <div class="sec-label">What's Alibaba.com</div>
+  <h2 class="sec-title">구매 의향이 있는 바이어가<br>먼저 검색합니다</h2>
+  <div class="tbl-wrap">
+    <table class="compare-tbl">
+      <thead><tr><th>항목</th><th>박람회</th><th>B2C 플랫폼</th><th class="hl">Alibaba.com</th></tr></thead>
+      <tbody>
+        <tr><td>타겟 바이어</td><td>방문자 혼재</td><td>개인 소비자</td><td class="hl">B2B 구매 담당자</td></tr>
+        <tr><td>주문 규모</td><td>소량~대량 (불확실)</td><td>낱개 위주</td><td class="hl">MOQ 지정 가능</td></tr>
+        <tr><td>운영 빈도</td><td>연 1~2회</td><td>상시 (경쟁 치열)</td><td class="hl">365일 24시간</td></tr>
+        <tr><td>초기 비용</td><td>$20,000~50,000/회</td><td>광고비 별도</td><td class="hl">연간 멤버십</td></tr>
+        <tr><td>수익 구조</td><td>반복 발주 바이어</td><td>개별 주문 단위</td><td class="hl">반복 발주 바이어</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tbl-note">Alibaba.com은 이미 구매 의향이 있는 바이어가 모이는 세계 최대 B2B 전용 플랫폼입니다.</p>
+</div>
+
+<div class="sec gray">
+  <div class="sec-label">What's Alibaba.com</div>
+  <h2 class="sec-title">전 세계 바이어와 연결되는<br>플랫폼의 규모</h2>
+  <div class="six-grid">
+    <div class="stat-card"><div class="stat-card-num">50M+</div><div class="stat-card-name">활성 바이어</div><div class="stat-card-sub">글로벌 구매자 수</div></div>
+    <div class="stat-card"><div class="stat-card-num">200+</div><div class="stat-card-name">국가 및 지역</div><div class="stat-card-sub">전 세계 커버리지</div></div>
+    <div class="stat-card"><div class="stat-card-num">200M+</div><div class="stat-card-name">등록 제품</div><div class="stat-card-sub">40개 이상 산업군</div></div>
+    <div class="stat-card"><div class="stat-card-num">200,000+</div><div class="stat-card-name">공급업체</div><div class="stat-card-sub">검증된 글로벌 셀러</div></div>
+    <div class="stat-card"><div class="stat-card-num">7,600+</div><div class="stat-card-name">제품 카테고리</div><div class="stat-card-sub">세분화된 상품군</div></div>
+    <div class="stat-card"><div class="stat-card-num">26+</div><div class="stat-card-name">운영 연혁(년)</div><div class="stat-card-sub">1999년 설립</div></div>
+  </div>
+</div>
+
+<div class="sec white">
+  <div class="sec-label">Alibaba.com Services</div>
+  <h2 class="sec-title">바이어의 신뢰를 얻고,<br>새로운 바이어를 찾으세요</h2>
+  <p class="sec-sub">Trade Assurance로 신뢰를 구축하고, RFQ로 능동적으로 바이어를 발굴하세요</p>
+  <div class="two-grid">
+    <div class="svc-card dark-bg">
+      <div class="svc-tag">🛡️ &nbsp;Trade Assurance</div>
+      <h3 class="svc-title">알리바바닷컴이 보증하는<br>안전 거래 시스템</h3>
+      <p class="svc-desc">바이어가 제품 수령 및 품질을 확인한 후 대금이 지급되는 에스크로 결제 시스템.</p>
+      <ul class="svc-list">
+        <li><strong>결제 안전 보장</strong><span>에스크로 방식으로 대금 보호</span></li>
+        <li><strong>품질 검수 지원</strong><span>제품 발송 전 검수 서비스 연계</span></li>
+        <li><strong>분쟁 조율 서비스</strong><span>알리바바닷컴 전문팀이 중재</span></li>
+        <li><strong>On-time 배송 보장</strong><span>배송 지연 시 환불 보호</span></li>
+      </ul>
+    </div>
+    <div class="svc-card orange-bg">
+      <div class="svc-tag">📋 &nbsp;RFQ 바이어매칭</div>
+      <h3 class="svc-title">바이어에게 먼저 연락하는<br>역발상 영업 채널</h3>
+      <p class="svc-desc">바이어가 직접 등록한 RFQ에 셀러가 능동적으로 응답. 전환율이 일반 광고 대비 현저히 높습니다.</p>
+      <ul class="svc-list">
+        <li><strong>구매 의향 바이어 직접 접촉</strong><span>이미 살 의사가 있는 바이어에게 견적 제출</span></li>
+        <li><strong>월 40~60건 RFQ 무료 응답</strong><span>GGS 패키지 포함 추가 쿼터 제공</span></li>
+        <li><strong>AI 추천 RFQ 매칭</strong><span>내 제품과 관련도 높은 RFQ 자동 추천</span></li>
+        <li><strong>높은 성약률</strong><span>일반 검색 유입 대비 3~5배 높은 전환율</span></li>
+      </ul>
+    </div>
+  </div>
+  <p class="svc-note">Trade Assurance + RFQ를 함께 활용하면 바이어의 신뢰와 능동적 발굴이 동시에 이루어집니다.</p>
+</div>
+
+<div class="sec gray">
+  <div class="sec-label">How It Works</div>
+  <h2 class="sec-title">온보딩부터<br>첫 거래까지</h2>
+  <p class="sec-sub">AM과 함께하는 12개월 성장 경로</p>
+  <div class="roadmap-grid">
+    <div class="road-card"><div class="road-phase">M0</div><div class="road-title">온보딩 &amp; 셋업</div><ul class="road-items"><li>계정 개설 완료</li><li>스토어 기본 설정</li><li>제품 리스팅 준비</li><li>AM 미팅 완료</li></ul><div class="road-star">온보딩 시작</div></div>
+    <div class="road-card"><div class="road-phase">M1–M2</div><div class="road-title">제품 등록 &amp; 런칭</div><ul class="road-items"><li>100개 이상 제품 등록</li><li>키워드 최적화</li><li>첫 바이어 인콰이어리</li></ul><div class="road-star">2 Star</div></div>
+    <div class="road-card"><div class="road-phase">M3–M5</div><div class="road-title">트래픽 &amp; 바이어 획득</div><ul class="road-items"><li>KWA 광고 집행 고도화</li><li>RFQ 적극 활용</li><li>AI 스마트캠페인</li></ul><div class="road-star">3 Star</div></div>
+    <div class="road-card"><div class="road-phase">M6–M9</div><div class="road-title">비즈니스 기회 실현</div><ul class="road-items"><li>반복 구매 바이어 확보</li><li>L3+급 바이어 확보</li><li>Trade Assurance 활용</li></ul><div class="road-star">4 Star</div></div>
+    <div class="road-card"><div class="road-phase">M10–M12</div><div class="road-title">지속적 성장</div><ul class="road-items"><li>Top Performer 등급</li><li>해외 매출 안정화</li><li>글로벌 바이어 DB 구축</li></ul><div class="road-star final">5 Star</div></div>
+  </div>
+</div>
+
+<div class="sec dark">
+  <div class="cta-inner">
+    <div>
+      <p style="font-size:11px;color:#666;letter-spacing:.12em;margin-bottom:18px;text-transform:uppercase;">Make It Happen</p>
+      <h2 class="cta-big">Make it easy to<br>do business<br><span class="orange">everywhere.</span></h2>
+      <p class="cta-tagline">알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.</p>
+      <div><div class="am-label">담당 AM</div><div class="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title">알리바바닷컴 코리아 · Global Key Account Division</div></div>
+    </div>
+    <div class="cta-stats-list">
+      <div class="cta-stat-row"><div class="cta-stat-num">50M+</div><div class="cta-stat-lbl">글로벌 바이어</div></div>
+      <div class="cta-stat-row"><div class="cta-stat-num">200+</div><div class="cta-stat-lbl">진출 국가</div></div>
+      <div class="cta-stat-row"><div class="cta-stat-num">26+</div><div class="cta-stat-lbl">산업 카테고리</div></div>
+      <div class="cta-stat-row"><div class="cta-stat-num">200M+</div><div class="cta-stat-lbl">등록 제품 수</div></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="copy">© 2024 Alibaba.com · For Business Inquiry Use Only</span>
+  <span class="logo">alibaba.com</span>
+</footer>
+
+</div><!-- /#main -->
+
+<script>
+const GAS_API = 'https://script.google.com/macros/s/AKfycbx6GrFoJdEXqfcbVP0NJ4H8VO-WjSFFWv2-9BgQSYxHe2ByvXH1TAh9t_Q6n7cx9MkVvQ/exec';
+
+function bar(pct){ return `<div class="c-bar-wrap"><div class="c-bar g" style="width:${pct}"></div></div>`; }
+function barK(pct){ return `<div class="c-bar-wrap"><div class="c-bar k" style="width:${pct}"></div></div>`; }
+
+function pct(val, max){ return max > 0 ? Math.round(val/max*100)+'%' : '0%'; }
+
+function renderIndustry(d, category) {
+  if (!d) {
+    document.getElementById('industry-section').innerHTML =
+      '<p style="color:#aaa;font-size:14px;padding:40px 0;">이 카테고리의 수요 데이터를 준비 중입니다.</p>';
+    return;
+  }
+
+  // 바 너비 계산
+  var gMax = Math.max(...[1,2,3,4,5].map(i => parseFloat(d['g_'+i+'_rfq'])||0));
+  var kMax = Math.max(...[1,2,3,4,5].map(i => parseFloat(String(d['kr_'+i+'_share']||'').replace('%',''))||0));
+
+  function gRow(i){
+    var rfq = parseFloat(d['g_'+i+'_rfq'])||0;
+    return `<div class="c-row">
+      <span class="c-rank">${i}</span>
+      <span class="c-name">${d['g_'+i+'_country']||'—'}</span>
+      ${bar(pct(rfq,gMax))}
+      <span class="c-val g">${rfq>0?rfq+'건':'—'}</span>
+    </div>`;
+  }
+  function kRow(i){
+    var s = String(d['kr_'+i+'_share']||'—');
+    var n = parseFloat(s.replace('%',''))||0;
+    return `<div class="c-row">
+      <span class="c-rank">${i}</span>
+      <span class="c-name">${d['kr_'+i+'_country']||'—'}</span>
+      ${barK(pct(n,kMax))}
+      <span class="c-val k">${s}</span>
+    </div>`;
+  }
+  function gsc(i){
+    return `<div class="sc-card dark">
+      <div class="sc-name">${d['gs_'+i]||'—'}</div>
+      <div class="sc-meta">${d['gs_'+i+'_rfq']||'—'} RFQs</div>
+      <div class="sc-ctry">${d['gs_'+i+'_ctry']||'—'}</div>
+    </div>`;
+  }
+  function ksc(i){
+    return `<div class="sc-card light">
+      <div class="sc-name">${d['subcate_'+i]||'—'}</div>
+      <div class="sc-opp">Opp. Index ${d['subcate_'+i+'_opp']||'—'}</div>
+      <div class="sc-yoy">${d['subcate_'+i+'_yoy']||'—'}</div>
+    </div>`;
+  }
+  function gkw(i){ return `<span class="kw-chip g"># ${d['gkw_'+i]||'—'}</span>`; }
+  function kkw(i){ return `<span class="kw-chip k"># ${d['kw_'+i]||'—'}</span>`; }
+
+  document.getElementById('industry-section').innerHTML = `
+  <div class="ind-box">
+    <div class="ind-topbar">
+      <div class="ind-topbar-title">${category} 카테고리 수요 리포트</div>
+      <div class="ind-topbar-date">최근 1주일 기준 &nbsp;·&nbsp; ${d.last_updated||'—'} 집계</div>
+    </div>
+    <div class="ind-hero-row">
+      <div class="ind-hero-cell">
+        <div class="ind-hero-lbl">주간 글로벌 RFQ 건수</div>
+        <div class="ind-hero-val">${d.rfq_count||'—'}</div>
+        <div class="ind-hero-sub">전 세계 바이어의 ${category} 견적 요청 (7일)</div>
+      </div>
+      <div class="ind-hero-cell">
+        <div class="ind-hero-lbl">최대 수요 국가</div>
+        <div class="ind-hero-val dark">${d.g_top_country||'—'}</div>
+        <div class="ind-hero-sub">글로벌 RFQ 기준 1위 바이어 국가</div>
+      </div>
+    </div>
+    <div class="sec-head g">
+      <span class="sh-badge">GLOBAL RFQ</span>
+      <div><div class="sh-title">글로벌 수요 현황</div><div class="sh-sub">rfq-analysis · Alibaba.com 실제 글로벌 바이어 견적 요청 데이터</div></div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">바이어 수요 국가 TOP 5 <span class="note">RFQ 건수 기준</span></div>
+      <div class="c-list">${[1,2,3,4,5].map(gRow).join('')}</div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">글로벌 인기 서브카테고리 <span class="note">RFQ 건수 · 주요 수요국</span></div>
+      <div class="sc-grid">${[1,2,3,4,5,6].map(gsc).join('')}</div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">글로벌 바이어 인기 검색 키워드</div>
+      <div class="kw-chips">${[1,2,3,4,5,6].map(gkw).join('')}</div>
+    </div>
+    <div class="sec-head k">
+      <span class="sh-badge">KR SELLER</span>
+      <div><div class="sh-title">한국 셀러 현황</div><div class="sh-sub">ggs-crm · 알리바바 한국 셀러 실제 판매 데이터</div></div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">한국 셀러 바이어 분포 TOP 5 <span class="note">IPV 기준</span></div>
+      <div class="c-list">${[1,2,3,4,5].map(kRow).join('')}</div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">한국 셀러 인기 서브카테고리 <span class="note">Opportunity Index 기준</span></div>
+      <div class="sc-grid">${[1,2,3,4,5,6].map(ksc).join('')}</div>
+    </div>
+    <div class="ind-blk">
+      <div class="blk-title">한국 셀러 제품 인기 검색어</div>
+      <div class="kw-chips">${[1,2,3,4,5,6].map(kkw).join('')}</div>
+    </div>
+  </div>`;
+}
+
+// 데이터 로드
+(async function(){
+  var params  = new URLSearchParams(location.search);
+  var category = decodeURIComponent(params.get('category') || '뷰티');
+
+  try {
+    var res  = await fetch(GAS_API + '?format=json&category=' + encodeURIComponent(category));
+    var data = await res.json();
+    renderIndustry(data, category);
+  } catch(e) {
+    renderIndustry(null, category);
+  }
+
+  document.getElementById('loading').style.display = 'none';
+  document.getElementById('main').style.display    = 'block';
+})();
+</script>
+</body>
+</html>
