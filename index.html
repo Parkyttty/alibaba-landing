@@ -321,7 +321,7 @@
       <p style="font-size:11px;color:#666;letter-spacing:.12em;margin-bottom:18px;text-transform:uppercase;">Make It Happen</p>
       <h2 class="cta-big">Make it easy to<br>do business<br><span class="orange">everywhere.</span></h2>
       <p class="cta-tagline">알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.</p>
-      <div><div class="am-label">담당 AM</div><div class="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title">알리바바닷컴 코리아 · Global Key Account Division</div></div>
+      <div><div class="am-label">담당 AM</div><div class="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title">알리바바닷컴 코리아 · Global Supplier Development Department</div></div>
     </div>
     <div class="cta-stats-list">
       <div class="cta-stat-row"><div class="cta-stat-num">50M+</div><div class="cta-stat-lbl">글로벌 바이어</div></div>
@@ -393,6 +393,32 @@ function renderIndustry(d, category) {
   }
   function gkw(i){ return `<span class="kw-chip g"># ${d['gkw_'+i]||'—'}</span>`; }
   function kkw(i){ return `<span class="kw-chip k"># ${d['kw_'+i]||'—'}</span>`; }
+  function trRow(label, kr, all){
+    var ratio = all > 0 ? Math.round(kr/all*100) : 0;
+    var w = Math.min(ratio, 100)+'%';
+    var badge = ratio >= 100 ? '<span class="tr-badge">글로벌 평균 초과</span>' : '';
+    return `<div class="tr-row">
+      <span class="tr-name">${label}</span>
+      <div class="c-bar-wrap"><div class="c-bar k" style="width:${w}"></div></div>
+      <span class="c-val k">${ratio}% ${badge}</span>
+    </div>`;
+  }
+
+  var trSpvKr = parseFloat(d['tr_shop_pv_kr'])||0;
+  var trSpvAll = parseFloat(d['tr_shop_pv_all'])||1;
+  var trAbKr  = parseFloat(d['tr_ab_cnt_kr'])||0;
+  var trAbAll = parseFloat(d['tr_ab_cnt_all'])||1;
+  var trImKr  = parseFloat(d['tr_imps_kr'])||0;
+  var trImAll = parseFloat(d['tr_imps_all'])||1;
+  var trafficBlk = trSpvKr > 0 ? `
+    <div class="ind-blk">
+      <div class="blk-title">KR 셀러 플랫폼 트래픽 지표 <span class="note">글로벌 평균 대비 · ggs-crm</span></div>
+      <div class="c-list">
+        ${trRow('숍 방문 지수', trSpvKr, trSpvAll)}
+        ${trRow('활성 바이어 지수', trAbKr, trAbAll)}
+        ${trRow('노출 지수', trImKr, trImAll)}
+      </div>
+    </div>` : '';
 
   document.getElementById('industry-section').innerHTML = `
   <div class="ind-box">
@@ -436,6 +462,7 @@ function renderIndustry(d, category) {
       <div class="blk-title">한국 셀러 바이어 분포 TOP 5 <span class="note">IPV 기준</span></div>
       <div class="c-list">${[1,2,3,4,5].map(kRow).join('')}</div>
     </div>
+    ${trafficBlk}
     <div class="ind-blk">
       <div class="blk-title">한국 셀러 인기 서브카테고리 <span class="note">Opportunity Index 기준</span></div>
       <div class="sc-grid">${[1,2,3,4,5,6].map(ksc).join('')}</div>
