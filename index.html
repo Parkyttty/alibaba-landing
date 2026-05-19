@@ -406,6 +406,7 @@ function renderIndustry(d, category) {
   function kkw(i){ return `<span class="kw-chip k"># ${d['kw_'+i]||'—'}</span>`; }
   function trChip(label, kr, all, tipText){
     var ratio = all > 0 ? Math.round(kr/all*100) : 0;
+    if (ratio < 90) return ''; // 글로벌 평균 대비 10%p 이상 불리한 지표는 표시 안 함
     var over  = ratio >= 100 ? ' tr-over' : '';
     return `<span class="tr-chip${over}">
       <span class="tr-label">${label}</span>
@@ -421,14 +422,15 @@ function renderIndustry(d, category) {
   var trAbAll = parseFloat(d['tr_ab_cnt_all'])||1;
   var trImKr  = parseFloat(d['tr_imps_kr'])||0;
   var trImAll = parseFloat(d['tr_imps_all'])||1;
-  var trafficBlk = trSpvKr > 0 ? `
+  var trChips = [
+    trChip('숍 방문 지수', trSpvKr, trSpvAll, '바이어가 KR 셀러 숍 페이지를 직접 방문한 횟수 지수. 글로벌 평균 100% 기준으로 KR 셀러의 상대적 방문 유입 수준을 나타냅니다.'),
+    trChip('활성 바이어 지수', trAbKr, trAbAll, 'RFQ 제출·문의·견적 요청 등 구매 의향 액션을 취한 바이어 수 지수. 단순 방문이 아닌 실제 관심 바이어 수 기준입니다.'),
+    trChip('노출 지수', trImKr, trImAll, '검색 결과·카테고리 페이지에서 KR 셀러 제품이 노출된 횟수 지수. 100% 초과 시 글로벌 평균보다 더 많이 노출되고 있음을 의미합니다.')
+  ].filter(Boolean).join('');
+  var trafficBlk = (trSpvKr > 0 && trChips) ? `
     <div class="ind-blk">
       <div class="blk-title">KR 셀러 플랫폼 트래픽 지표 <span class="note">글로벌 평균 대비 · 마우스 올리면 설명</span></div>
-      <div class="tr-chips">
-        ${trChip('숍 방문 지수', trSpvKr, trSpvAll, '바이어가 KR 셀러 숍 페이지를 직접 방문한 횟수 지수. 글로벌 평균 100% 기준으로 KR 셀러의 상대적 방문 유입 수준을 나타냅니다.')}
-        ${trChip('활성 바이어 지수', trAbKr, trAbAll, 'RFQ 제출·문의·견적 요청 등 구매 의향 액션을 취한 바이어 수 지수. 단순 방문이 아닌 실제 관심 바이어 수 기준입니다.')}
-        ${trChip('노출 지수', trImKr, trImAll, '검색 결과·카테고리 페이지에서 KR 셀러 제품이 노출된 횟수 지수. 100% 초과 시 글로벌 평균보다 더 많이 노출되고 있음을 의미합니다.')}
-      </div>
+      <div class="tr-chips">${trChips}</div>
     </div>` : '';
 
   document.getElementById('industry-section').innerHTML = `
