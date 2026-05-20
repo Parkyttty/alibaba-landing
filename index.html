@@ -25,6 +25,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Noto Sans KR',-apple-system,sans-serif;color:#1a1a1a;line-height:1.5}
@@ -333,6 +334,10 @@
       <h2 class="cta-big">Make it easy to<br>do business<br><span class="orange">everywhere.</span></h2>
       <p class="cta-tagline">알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.</p>
       <div><div class="am-label">담당 AM</div><div class="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title">알리바바닷컴 코리아 · Global Supplier Development Department</div></div>
+      <div style="margin-top:24px;display:flex;align-items:center;gap:16px">
+        <div id="qr-box" style="width:88px;height:88px;border-radius:8px;background:white;padding:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center"></div>
+        <div style="font-size:12px;color:#777;line-height:1.6">QR코드로 바로<br>Alibaba.com 접속</div>
+      </div>
     </div>
     <div class="cta-stats-list">
       <div class="cta-stat-row"><div class="cta-stat-num">50M+</div><div class="cta-stat-lbl">글로벌 바이어</div></div>
@@ -416,6 +421,11 @@ function renderIndustry(d, category) {
     </span>`;
   }
 
+  var hasKrCountry = [1,2,3,4,5].some(i => { var v = d['kr_'+i+'_country']; return v && v !== '—' && v !== ''; });
+  var hasKrSubcate = [1,2,3,4,5,6].some(i => { var v = d['subcate_'+i]; return v && v !== '—' && v !== ''; });
+  var hasKrKw      = [1,2,3,4,5,6].some(i => { var v = d['kw_'+i]; return v && v !== '—' && v !== ''; });
+  var krNA = '<div style="color:#bbb;font-size:13px;padding:8px 0;">데이터 준비 중</div>';
+
   var trSpvKr = parseFloat(d['tr_shop_pv_kr'])||0;
   var trSpvAll = parseFloat(d['tr_shop_pv_all'])||1;
   var trAbKr  = parseFloat(d['tr_ab_cnt_kr'])||0;
@@ -432,6 +442,21 @@ function renderIndustry(d, category) {
       <div class="blk-title">KR 셀러 플랫폼 트래픽 지표 <span class="note">글로벌 평균 대비 · 마우스 올리면 설명</span></div>
       <div class="tr-chips">${trChips}</div>
     </div>` : '';
+
+  function secOn(key) {
+    try {
+      var cfg = JSON.parse(localStorage.getItem('alb_section_cfg') || '{}');
+      return (cfg[category] || {})[key] !== false;
+    } catch(e) { return true; }
+  }
+
+  var blkGCountry  = secOn('global_countries') ? `<div class="ind-blk"><div class="blk-title">바이어 수요 국가 TOP 5 <span class="note">RFQ 건수 기준</span></div><div class="c-list">${[1,2,3,4,5].map(gRow).join('')}</div></div>` : '';
+  var blkGSubcate  = secOn('global_subcate')   ? `<div class="ind-blk"><div class="blk-title">글로벌 인기 서브카테고리 <span class="note">RFQ 건수 · 주요 수요국</span></div><div class="sc-grid">${[1,2,3,4,5,6].map(gsc).join('')}</div></div>` : '';
+  var blkGKw       = secOn('global_kw')        ? `<div class="ind-blk"><div class="blk-title">글로벌 바이어 인기 검색 키워드</div><div class="kw-chips">${[1,2,3,4,5,6].map(gkw).join('')}</div></div>` : '';
+  var blkKrCountry = secOn('kr_countries')     ? `<div class="ind-blk"><div class="blk-title">한국 셀러 바이어 분포 TOP 5 <span class="note">IPV 기준</span></div>${hasKrCountry ? `<div class="c-list">${[1,2,3,4,5].map(kRow).join('')}</div>` : krNA}</div>` : '';
+  var blkKrTraffic = secOn('kr_traffic')       ? trafficBlk : '';
+  var blkKrSubcate = secOn('kr_subcate')       ? `<div class="ind-blk"><div class="blk-title">한국 셀러 인기 서브카테고리 <span class="note">Opportunity Index 기준</span></div>${hasKrSubcate ? `<div class="sc-grid">${[1,2,3,4,5,6].map(ksc).join('')}</div>` : krNA}</div>` : '';
+  var blkKrKw      = secOn('kr_kw')            ? `<div class="ind-blk"><div class="blk-title">한국 셀러 제품 인기 검색어</div>${hasKrKw ? `<div class="kw-chips">${[1,2,3,4,5,6].map(kkw).join('')}</div>` : krNA}</div>` : '';
 
   document.getElementById('industry-section').innerHTML = `
   <div class="ind-box">
@@ -455,35 +480,12 @@ function renderIndustry(d, category) {
       <span class="sh-badge">GLOBAL RFQ</span>
       <div><div class="sh-title">글로벌 수요 현황</div><div class="sh-sub">rfq-analysis · Alibaba.com 실제 글로벌 바이어 견적 요청 데이터</div></div>
     </div>
-    <div class="ind-blk">
-      <div class="blk-title">바이어 수요 국가 TOP 5 <span class="note">RFQ 건수 기준</span></div>
-      <div class="c-list">${[1,2,3,4,5].map(gRow).join('')}</div>
-    </div>
-    <div class="ind-blk">
-      <div class="blk-title">글로벌 인기 서브카테고리 <span class="note">RFQ 건수 · 주요 수요국</span></div>
-      <div class="sc-grid">${[1,2,3,4,5,6].map(gsc).join('')}</div>
-    </div>
-    <div class="ind-blk">
-      <div class="blk-title">글로벌 바이어 인기 검색 키워드</div>
-      <div class="kw-chips">${[1,2,3,4,5,6].map(gkw).join('')}</div>
-    </div>
+    ${blkGCountry}${blkGSubcate}${blkGKw}
     <div class="sec-head k">
       <span class="sh-badge">KR SELLER</span>
       <div><div class="sh-title">한국 셀러 현황</div><div class="sh-sub">ggs-crm · 알리바바 한국 셀러 실제 판매 데이터</div></div>
     </div>
-    <div class="ind-blk">
-      <div class="blk-title">한국 셀러 바이어 분포 TOP 5 <span class="note">IPV 기준</span></div>
-      <div class="c-list">${[1,2,3,4,5].map(kRow).join('')}</div>
-    </div>
-    ${trafficBlk}
-    <div class="ind-blk">
-      <div class="blk-title">한국 셀러 인기 서브카테고리 <span class="note">Opportunity Index 기준</span></div>
-      <div class="sc-grid">${[1,2,3,4,5,6].map(ksc).join('')}</div>
-    </div>
-    <div class="ind-blk">
-      <div class="blk-title">한국 셀러 제품 인기 검색어</div>
-      <div class="kw-chips">${[1,2,3,4,5,6].map(kkw).join('')}</div>
-    </div>
+    ${blkKrCountry}${blkKrTraffic}${blkKrSubcate}${blkKrKw}
   </div>`;
 }
 
@@ -502,6 +504,12 @@ function renderIndustry(d, category) {
 
   document.getElementById('loading').style.display = 'none';
   document.getElementById('main').style.display    = 'block';
+
+  // QR 코드 생성
+  var qrBox = document.getElementById('qr-box');
+  if (qrBox && typeof QRCode !== 'undefined') {
+    new QRCode(qrBox, { text: 'https://www.alibaba.com/', width: 80, height: 80, correctLevel: QRCode.CorrectLevel.H });
+  }
 })();
 </script>
 </body>
