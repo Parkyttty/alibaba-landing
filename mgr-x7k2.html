@@ -139,9 +139,27 @@
     .rf-val{font-size:13px;color:#333;line-height:1.5}
     .rf-val.subj{font-weight:700;font-size:14px;color:#1a1a1a}
     .rf-val.link{color:#FF6600;word-break:break-all;font-size:12px}
-    .editor-toolbar{display:flex;gap:4px;margin-bottom:6px}
+    .editor-toolbar{display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap}
     .editor-toolbar button{background:#f0f0f0;border:none;border-radius:5px;width:28px;height:28px;font-size:13px;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center}
     .editor-toolbar button:hover{background:#e0e0e0}
+    .editor-toolbar button.link-btn{width:auto;padding:0 10px;font-size:11px;color:#FF6600;background:#FFF0E8}
+    .editor-toolbar button.link-btn:hover{background:#FFE0CC}
+    .common-panel{background:white;border-radius:14px;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
+    .common-panel-hd{padding:14px 20px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none}
+    .common-panel-hd:hover{background:#fafafa}
+    .common-panel-hd .badge-opt{font-size:10px;font-weight:500;color:#aaa;background:#f0f0f0;padding:2px 8px;border-radius:999px}
+    .common-panel-body{display:none;border-top:1px solid #f0f0f0;padding:18px 20px}
+    .common-panel.open .common-panel-body{display:block}
+    .common-panel.open .cp-arrow{transform:rotate(180deg)}
+    .cp-arrow{font-size:11px;color:#ccc;transition:transform .2s;margin-left:auto}
+    .attach-row{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;flex-wrap:wrap}
+    .attach-lbl{font-size:11px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase}
+    .attach-input{display:none}
+    .attach-trigger{background:#f0f0f0;border:none;border-radius:8px;padding:8px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+    .attach-trigger:hover{background:#e0e0e0}
+    .attach-name{font-size:12px;color:#555;flex:1}
+    .attach-clear{background:none;border:none;color:#ccc;font-size:16px;cursor:pointer;padding:0 4px}
+    .attach-clear:hover{color:#c53030}
     .email-editor{font-size:13px;color:#333;line-height:1.75;border:1.5px solid #e8e8e8;border-radius:8px;padding:14px 16px;background:white;min-height:260px;max-height:360px;overflow-y:auto;outline:none;cursor:text}
     .email-editor:focus{border-color:#FF6600}
     .email-editor p{margin-bottom:12px}
@@ -247,6 +265,32 @@
     <button class="tb-btn" style="font-size:12px;padding:7px 14px;background:#555" onclick="toggleAllReview(false)">전체 해제</button>
   </nav>
   <div class="review-body">
+    <!-- 공통 추가 설정 -->
+    <div class="common-panel" id="common-panel">
+      <div class="common-panel-hd" onclick="this.parentElement.classList.toggle('open')">
+        <span>📌 공통 추가 설정</span>
+        <span class="badge-opt">선택사항 — 모든 이메일에 공통 적용</span>
+        <span class="cp-arrow">▼</span>
+      </div>
+      <div class="common-panel-body">
+        <div class="rf-lbl" style="margin-bottom:8px">추가 안내 문구 <span style="font-weight:400;color:#ccc;text-transform:none;letter-spacing:0;font-size:10px">"긴 글 읽어주셔서..." 바로 위에 삽입</span></div>
+        <div class="editor-toolbar">
+          <button onmousedown="event.preventDefault();document.execCommand('bold')" title="볼드"><b>B</b></button>
+          <button onmousedown="event.preventDefault();document.execCommand('italic')" title="이탤릭"><i>I</i></button>
+          <button onmousedown="event.preventDefault();document.execCommand('underline')" title="밑줄"><u>U</u></button>
+          <button class="link-btn" onmousedown="event.preventDefault();insertLinkExtra()" title="링크 삽입">🔗 링크</button>
+          <button onmousedown="event.preventDefault();document.execCommand('removeFormat')" style="font-size:11px;width:auto;padding:0 8px" title="서식 제거">제거</button>
+        </div>
+        <div class="email-editor" id="extra-text" contenteditable="true" style="min-height:80px" placeholder="예: 5월 28일(수) 오전 11시 알리바바닷컴 세미나를 진행합니다. 참석을 희망하시면 아래 링크에서 사전 등록해 주세요."></div>
+        <div class="attach-row">
+          <span class="attach-lbl">📎 첨부파일</span>
+          <button class="attach-trigger" onclick="document.getElementById('attach-input').click()">파일 선택</button>
+          <input class="attach-input" type="file" id="attach-input" onchange="onAttachChange(this)">
+          <span class="attach-name" id="attach-name">선택된 파일 없음</span>
+          <button class="attach-clear" id="attach-clear" onclick="clearAttach()" style="display:none">✕</button>
+        </div>
+      </div>
+    </div>
     <div id="review-list"></div>
     <div id="send-log" style="display:none"></div>
   </div>
@@ -578,6 +622,29 @@ function buildBody(l) {
 <p>긴 글 읽어주셔서 감사드리고, 평안한 하루 되시길 바랍니다.</p>`;
 }
 
+// ── Link / Attach helpers ─────────────────────────────
+function insertLink() {
+  const url=prompt('링크 URL 입력:', 'https://');
+  if (url) document.execCommand('createLink', false, url);
+}
+function insertLinkExtra() {
+  const el=document.getElementById('extra-text');
+  el.focus();
+  const url=prompt('링크 URL 입력:', 'https://');
+  if (url) document.execCommand('createLink', false, url);
+}
+function onAttachChange(inp) {
+  if (inp.files.length>0) {
+    document.getElementById('attach-name').textContent=inp.files[0].name;
+    document.getElementById('attach-clear').style.display='inline';
+  }
+}
+function clearAttach() {
+  document.getElementById('attach-input').value='';
+  document.getElementById('attach-name').textContent='선택된 파일 없음';
+  document.getElementById('attach-clear').style.display='none';
+}
+
 // ── Review screen ─────────────────────────────────────
 function goReview() {
   reviewLeads=getSelected();
@@ -587,6 +654,10 @@ function goReview() {
   document.getElementById('send-log').innerHTML='';
   document.getElementById('btn-final-send').disabled=false;
   document.getElementById('btn-final-send').textContent='최종 발송';
+  // 공통 설정 초기화
+  document.getElementById('extra-text').innerHTML='';
+  document.getElementById('common-panel').classList.remove('open');
+  clearAttach();
 
   document.getElementById('review-list').innerHTML=reviewLeads.map((l,i)=>`
     <div class="review-card" id="rc-${i}">
@@ -610,6 +681,7 @@ function goReview() {
             <button onmousedown="event.preventDefault();document.execCommand('bold')" title="볼드"><b>B</b></button>
             <button onmousedown="event.preventDefault();document.execCommand('italic')" title="이탤릭"><i>I</i></button>
             <button onmousedown="event.preventDefault();document.execCommand('underline')" title="밑줄"><u>U</u></button>
+            <button class="link-btn" onmousedown="event.preventDefault();insertLink()" title="링크 삽입">🔗 링크</button>
             <button onmousedown="event.preventDefault();document.execCommand('removeFormat')" title="서식 제거" style="font-size:11px;width:auto;padding:0 8px">제거</button>
           </div>
           <div class="email-editor" id="body-${i}" contenteditable="true">${buildBody(l)}</div>
@@ -645,18 +717,43 @@ async function doSend() {
   log.style.display='block'; log.innerHTML='<span>서버에 요청 중...</span>';
 
   const SIG='<br><img src="https://parkyttty.github.io/alibaba-landing/signature.png" width="344" height="110" alt="박영운 서명">';
+
+  // 추가 문구
+  const extraEl=document.getElementById('extra-text');
+  const extraHtml=(extraEl?extraEl.innerHTML.trim():'').replace(/^<br>$/,'');
+
+  // 첨부파일
+  const attachInput=document.getElementById('attach-input');
+  let attachData=null;
+  if (attachInput&&attachInput.files.length>0) {
+    const file=attachInput.files[0];
+    attachData=await new Promise(res=>{
+      const r2=new FileReader();
+      r2.onload=e=>res({name:file.name,type:file.type,b64:e.target.result.split(',')[1]});
+      r2.readAsDataURL(file);
+    });
+  }
+
   const emails=[...document.querySelectorAll('.rv-chk:checked')].map(c=>{
     const idx=parseInt(c.dataset.idx);
     const l=reviewLeads[idx];
     const editor=document.getElementById('body-'+idx);
-    const body=(editor?editor.innerHTML:buildBody(l))+SIG;
+    let body=editor?editor.innerHTML:buildBody(l);
+    // 추가 문구 삽입 (긴 글 읽어주셔서... 바로 위)
+    if (extraHtml) {
+      const marker='긴 글 읽어주셔서';
+      const pos=body.indexOf(marker);
+      const pStart=pos!==-1?body.lastIndexOf('<p>',pos):body.length;
+      body=body.slice(0,pStart)+`<p>${extraHtml}</p>`+body.slice(pStart);
+    }
+    body+=SIG;
     return {to:l.email,company:l.company,subject:buildSubject(l),body,crmId:l.crmId||''};
   }).filter(e=>e.to);
 
   try {
     const r=await fetch(LOCAL_SV+'/admin/send-emails',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({emails,sig:SIG})
+      body:JSON.stringify({emails,sig:SIG,attach:attachData})
     });
     if (!r.ok) throw new Error('서버 오류 '+r.status);
     const result=await r.json();
