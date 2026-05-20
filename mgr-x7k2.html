@@ -10,51 +10,48 @@
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:#f2f2f2;color:#1a1a1a;min-height:100vh}
 
-    /* ── PASSWORD SCREEN ───────────────────────────────────── */
     #pw-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#1a1a1a}
     .pw-box{background:white;border-radius:20px;padding:52px 44px;width:360px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
     .pw-logo{color:#FF6600;font-size:22px;font-weight:900;margin-bottom:6px}
     .pw-sub{color:#aaa;font-size:13px;margin-bottom:36px}
-    .pw-input{width:100%;border:2px solid #e8e8e8;border-radius:10px;padding:14px 16px;font-size:22px;letter-spacing:8px;text-align:center;outline:none;font-family:inherit;transition:border-color .2s}
+    .pw-input{width:100%;border:2px solid #e8e8e8;border-radius:10px;padding:14px;font-size:26px;letter-spacing:10px;text-align:center;outline:none;font-family:inherit;transition:border-color .2s}
     .pw-input:focus{border-color:#FF6600}
-    .pw-btn{width:100%;margin-top:14px;background:#FF6600;color:white;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+    .pw-btn{width:100%;margin-top:14px;background:#FF6600;color:white;border:none;border-radius:10px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit}
     .pw-btn:hover{background:#e05a00}
     .pw-err{color:#e53e3e;font-size:13px;margin-top:10px;height:18px}
 
-    /* ── LAYOUT ─────────────────────────────────────────────── */
     #admin{display:none}
     .adm-nav{background:#1a1a1a;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 36px;position:sticky;top:0;z-index:100}
     .adm-logo{color:#FF6600;font-weight:900;font-size:15px}
     .nav-tabs{display:flex;gap:4px}
-    .nav-tab{background:none;border:none;color:#666;font-size:13px;font-weight:500;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit;transition:.15s}
+    .nav-tab{background:none;border:none;color:#666;font-size:13px;font-weight:500;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit}
     .nav-tab.active,.nav-tab:hover{background:#333;color:white}
     .adm-logout{background:none;border:none;color:#555;font-size:12px;cursor:pointer;font-family:inherit}
     .adm-logout:hover{color:white}
 
     .adm-body{max-width:980px;margin:0 auto;padding:36px 24px}
     .panel{display:none}.panel.active{display:block}
-
-    /* ── CARDS / COMMON ──────────────────────────────────────── */
-    .card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.07);margin-bottom:14px}
     .sec-title{font-size:17px;font-weight:900;margin-bottom:18px;display:flex;align-items:center;gap:10px}
     .cnt-badge{font-size:12px;font-weight:500;color:#999;background:#eee;padding:2px 10px;border-radius:999px}
 
-    /* ── SECTION PANEL ───────────────────────────────────────── */
-    .cat-hd{display:flex;align-items:center;gap:14px;padding:18px 24px;cursor:pointer;user-select:none;transition:background .12s}
+    .card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,.07);margin-bottom:14px}
+    .cat-hd{display:flex;align-items:center;gap:12px;padding:18px 24px;cursor:pointer;user-select:none}
     .cat-hd:hover{background:#fafafa}
     .cat-nm{font-size:14px;font-weight:700;flex:1}
     .badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px}
     .badge-ok{background:#e6f4ea;color:#1a7a3b}
     .badge-no{background:#fff0f0;color:#c53030}
     .badge-chk{background:#f0f0f0;color:#999}
-    .cat-arrow{font-size:11px;color:#ccc;transition:transform .2s;flex-shrink:0}
+    .cat-arrow{font-size:11px;color:#ccc;transition:transform .2s}
     .card.open .cat-arrow{transform:rotate(180deg)}
     .cat-body{display:none;border-top:1px solid #f0f0f0;padding:22px 24px 24px}
     .card.open .cat-body{display:block}
-    .grp-lbl{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;margin-top:18px}
+
+    .grp-lbl{font-size:10px;font-weight:700;color:#bbb;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;margin-top:16px}
     .grp-lbl:first-child{margin-top:0}
     .tog-rows{display:flex;flex-direction:column;gap:7px}
     .tog-row{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#f7f7f7;border-radius:8px}
+    .tog-row.header-row{background:#fff3ec;border:1px solid #ffe0cc}
     .tog-nm{font-size:13px;font-weight:500}
     .switch{position:relative;width:40px;height:22px;flex-shrink:0}
     .switch input{opacity:0;width:0;height:0}
@@ -62,37 +59,46 @@
     .sw-sl:before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:white;border-radius:50%;transition:.2s}
     .switch input:checked+.sw-sl{background:#FF6600}
     .switch input:checked+.sw-sl:before{transform:translateX(18px)}
-    .save-row{display:flex;align-items:center;gap:12px;margin-top:16px}
-    .save-btn{background:#FF6600;color:white;border:none;border-radius:8px;padding:9px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+    .save-row{display:flex;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap}
+    .save-btn{background:#FF6600;color:white;border:none;border-radius:8px;padding:9px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
     .save-btn:hover{background:#e05a00}
     .saved-msg{font-size:12px;color:#1a7a3b;display:none}
-    .del-btn{margin-left:auto;background:none;border:1px solid #eee;color:#ccc;border-radius:6px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:inherit}
+    .del-btn{background:none;border:1px solid #eee;color:#ccc;border-radius:6px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:inherit}
     .del-btn:hover{border-color:#f0a0a0;color:#c53030}
-    .preview-a{font-size:11px;color:#FF6600;text-decoration:none;flex-shrink:0}
+    .update-btn{background:#1a1a1a;color:white;border:none;border-radius:8px;padding:9px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit}
+    .update-btn:hover{background:#333}
+    .update-btn:disabled{background:#ccc;cursor:not-allowed}
+    .update-log{font-size:11px;color:#888;margin-top:8px;padding:8px 12px;background:#f7f7f7;border-radius:6px;display:none;word-break:break-all}
+    .preview-a{font-size:11px;color:#FF6600;text-decoration:none}
     .preview-a:hover{text-decoration:underline}
     .add-row{display:flex;gap:10px;margin-top:14px}
     .add-inp{flex:1;border:2px solid #e8e8e8;border-radius:10px;padding:10px 14px;font-size:14px;outline:none;font-family:inherit}
     .add-inp:focus{border-color:#FF6600}
-    .add-btn{background:#1a1a1a;color:white;border:none;border-radius:10px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+    .add-btn{background:#1a1a1a;color:white;border:none;border-radius:10px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
     .add-btn:hover{background:#333}
 
-    /* ── EMAIL PANEL ─────────────────────────────────────────── */
-    .toolbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap}
-    .tb-btn{background:#1a1a1a;color:white;border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
+    .txt-field{background:white;border-radius:12px;padding:20px 24px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+    .txt-lbl{font-size:11px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+    .txt-inp{width:100%;border:2px solid #e8e8e8;border-radius:8px;padding:10px 14px;font-size:14px;outline:none;font-family:inherit;resize:vertical}
+    .txt-inp:focus{border-color:#FF6600}
+    .txt-default{font-size:11px;color:#ccc;margin-top:4px}
+    .txt-save-row{margin-top:20px;display:flex;align-items:center;gap:12px}
+
+    .toolbar{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+    .tb-btn{background:#1a1a1a;color:white;border:none;border-radius:8px;padding:10px 18px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit}
     .tb-btn:hover{background:#333}
     .tb-btn:disabled{background:#ccc;cursor:not-allowed}
     .tb-btn.orange{background:#FF6600}
     .tb-btn.orange:hover{background:#e05a00}
     .filter-sel{border:2px solid #e8e8e8;border-radius:8px;padding:9px 12px;font-size:13px;outline:none;font-family:inherit;background:white}
-    .filter-sel:focus{border-color:#FF6600}
     .status-txt{font-size:13px;color:#888}
 
-    .lead-table-wrap{overflow-x:auto;border-radius:12px;background:white;box-shadow:0 1px 8px rgba(0,0,0,.07)}
+    .lead-table-wrap{border-radius:12px;overflow:hidden;background:white;box-shadow:0 1px 8px rgba(0,0,0,.07)}
     table.leads{width:100%;border-collapse:collapse;min-width:700px}
     .leads thead tr{background:#1a1a1a}
-    .leads thead th{padding:13px 16px;font-size:12px;font-weight:700;color:white;text-align:left;white-space:nowrap}
-    .leads thead th:first-child{width:40px;text-align:center}
-    .leads tbody tr{border-bottom:1px solid #f0f0f0;transition:background .1s}
+    .leads thead th{padding:12px 16px;font-size:12px;font-weight:700;color:white;text-align:left;white-space:nowrap}
+    .leads thead th:first-child{width:36px;text-align:center}
+    .leads tbody tr{border-bottom:1px solid #f0f0f0}
     .leads tbody tr:last-child{border-bottom:none}
     .leads tbody tr:hover{background:#fafafa}
     .leads td{padding:12px 16px;font-size:13px;vertical-align:middle}
@@ -102,53 +108,56 @@
     .sent-n{background:#f0f0f0;color:#999}
     .cat-chip{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;background:#FFF0E8;color:#FF6600}
 
-    /* Email compose modal */
-    .modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;align-items:center;justify-content:center;padding:24px}
-    .modal-backdrop.show{display:flex}
-    .modal{background:white;border-radius:16px;width:100%;max-width:680px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.3)}
-    .modal-head{padding:22px 28px 0;display:flex;align-items:center;justify-content:space-between}
-    .modal-title{font-size:16px;font-weight:900}
-    .modal-close{background:none;border:none;font-size:22px;color:#aaa;cursor:pointer;line-height:1}
-    .modal-close:hover{color:#1a1a1a}
-    .modal-body{padding:20px 28px;overflow-y:auto;flex:1}
-    .modal-foot{padding:16px 28px;border-top:1px solid #f0f0f0;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-    .field-row{margin-bottom:14px}
-    .field-lbl{font-size:11px;color:#aaa;margin-bottom:4px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-    .field-val{font-size:13px;color:#333;line-height:1.5;word-break:break-all}
-    .field-val.subj{font-weight:700;font-size:14px;color:#1a1a1a}
-    .email-body-preview{font-size:12px;color:#555;line-height:1.7;white-space:pre-wrap;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;max-height:260px;overflow-y:auto}
-    .progress-log{font-size:12px;color:#555;line-height:1.8;padding:12px 14px;background:#f7f7f7;border-radius:8px;max-height:200px;overflow-y:auto;white-space:pre-wrap;margin-top:8px}
-    .progress-ok{color:#1a7a3b;font-weight:700}
-    .progress-err{color:#c53030;font-weight:700}
+    #review-screen{display:none;position:fixed;inset:0;background:#f2f2f2;z-index:200;overflow-y:auto;padding-bottom:80px}
+    .review-nav{background:#1a1a1a;height:56px;display:flex;align-items:center;padding:0 36px;gap:16px;position:sticky;top:0;z-index:10}
+    .review-body{max-width:900px;margin:0 auto;padding:28px 24px}
+    .review-card{background:white;border-radius:14px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .review-card-hd{display:flex;align-items:center;gap:12px;padding:16px 20px;cursor:pointer;user-select:none}
+    .review-card-hd:hover{background:#fafafa}
+    .review-card-idx{font-size:12px;font-weight:700;color:#bbb;min-width:22px}
+    .review-card-co{font-size:14px;font-weight:700;flex:1}
+    .review-card-email{font-size:12px;color:#FF6600}
+    .review-card.open .rv-arrow{transform:rotate(180deg)}
+    .rv-arrow{font-size:11px;color:#ccc;transition:transform .2s}
+    .review-card-body{display:none;border-top:1px solid #f0f0f0;padding:20px}
+    .review-card.open .review-card-body{display:block}
+    .rf-row{margin-bottom:14px}
+    .rf-lbl{font-size:10px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+    .rf-val{font-size:13px;color:#333;line-height:1.5}
+    .rf-val.subj{font-weight:700;font-size:14px;color:#1a1a1a}
+    .rf-val.link{color:#FF6600;word-break:break-all;font-size:12px}
+    .email-preview{font-size:12px;color:#555;line-height:1.75;white-space:pre-wrap;border:1px solid #f0f0f0;border-radius:8px;padding:14px;background:#fafafa;max-height:220px;overflow-y:auto}
+    .review-footer{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;padding:16px 36px;display:flex;align-items:center;gap:14px;box-shadow:0 -2px 12px rgba(0,0,0,.06);z-index:10}
+    .send-log{font-size:12px;line-height:1.8;padding:12px;background:#f7f7f7;border-radius:8px;max-height:140px;overflow-y:auto;white-space:pre-wrap;margin:12px 24px 0}
+    .log-ok{color:#1a7a3b;font-weight:700;display:block}
+    .log-err{color:#c53030;font-weight:700;display:block}
   </style>
 </head>
 <body>
 
-<!-- ── PASSWORD ─────────────────────────────────── -->
 <div id="pw-screen">
   <div class="pw-box">
     <div class="pw-logo">Alibaba.com</div>
     <div class="pw-sub">랜딩페이지 관리자</div>
-    <input class="pw-input" type="password" id="pw-inp" placeholder="••••" autocomplete="current-password" maxlength="6">
+    <input class="pw-input" type="password" id="pw-inp" placeholder="••••" maxlength="6">
     <button class="pw-btn" onclick="checkPw()">로그인</button>
     <div class="pw-err" id="pw-err"></div>
   </div>
 </div>
 
-<!-- ── ADMIN ─────────────────────────────────────── -->
 <div id="admin">
   <nav class="adm-nav">
     <div class="adm-logo">Alibaba Landing · Manager</div>
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="switchTab('sections',this)">섹션 관리</button>
+      <button class="nav-tab" onclick="switchTab('text',this)">페이지 문구</button>
       <button class="nav-tab" onclick="switchTab('email',this)">이메일 발송</button>
     </div>
     <button class="adm-logout" onclick="logout()">로그아웃</button>
   </nav>
 
   <div class="adm-body">
-
-    <!-- ── SECTIONS PANEL ─── -->
+    <!-- SECTIONS -->
     <div class="panel active" id="panel-sections">
       <div class="sec-title">카테고리별 섹션 설정 <span class="cnt-badge" id="cat-cnt">—</span></div>
       <div id="cat-list"></div>
@@ -158,23 +167,30 @@
       </div>
     </div>
 
-    <!-- ── EMAIL PANEL ─── -->
+    <!-- TEXT -->
+    <div class="panel" id="panel-text">
+      <div class="sec-title">공통 페이지 문구 편집</div>
+      <div id="txt-fields"></div>
+      <div class="txt-save-row">
+        <button class="save-btn" onclick="saveTxt()">저장</button>
+        <span class="saved-msg" id="txt-saved">저장 완료 ✓</span>
+        <button onclick="resetTxt()" style="margin-left:auto;background:none;border:1px solid #eee;color:#aaa;border-radius:8px;padding:9px 16px;font-size:12px;cursor:pointer;font-family:inherit">기본값 복원</button>
+      </div>
+    </div>
+
+    <!-- EMAIL -->
     <div class="panel" id="panel-email">
       <div class="sec-title">이메일 발송</div>
       <div class="toolbar">
         <button class="tb-btn" id="btn-load" onclick="loadLeads()">리드 불러오기</button>
-        <select class="filter-sel" id="filter-cat" onchange="applyFilter()">
-          <option value="">전체 카테고리</option>
-        </select>
+        <select class="filter-sel" id="filter-cat" onchange="applyFilter()"><option value="">전체 카테고리</option></select>
         <select class="filter-sel" id="filter-sent" onchange="applyFilter()">
-          <option value="">전체</option>
-          <option value="n">미발송</option>
-          <option value="y">발송완료</option>
+          <option value="">전체</option><option value="n">미발송</option><option value="y">발송완료</option>
         </select>
-        <button class="tb-btn orange" id="btn-send" onclick="openSendModal()" disabled>선택 발송</button>
+        <button class="tb-btn orange" id="btn-review" onclick="goReview()" disabled>발송 검수 →</button>
         <span class="status-txt" id="lead-status"></span>
       </div>
-      <div class="lead-table-wrap">
+      <div class="lead-table-wrap" style="overflow-x:auto">
         <table class="leads">
           <thead><tr>
             <th><input type="checkbox" id="chk-all" onchange="toggleAll(this)"></th>
@@ -184,23 +200,25 @@
         </table>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ── COMPOSE MODAL ─────────────────────────────── -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal">
-    <div class="modal-head">
-      <span class="modal-title" id="modal-title">이메일 발송 확인</span>
-      <button class="modal-close" onclick="closeModal()">×</button>
-    </div>
-    <div class="modal-body" id="modal-body"></div>
-    <div class="modal-foot">
-      <button class="tb-btn orange" id="modal-send-btn" onclick="doSend()">발송 시작</button>
-      <button class="tb-btn" onclick="closeModal()" style="background:#888">취소</button>
-      <span class="status-txt" id="modal-status"></span>
-    </div>
+<!-- REVIEW SCREEN -->
+<div id="review-screen">
+  <nav class="review-nav">
+    <button onclick="closeReview()" style="background:none;border:none;color:#aaa;font-size:13px;cursor:pointer;font-family:inherit">← 목록으로</button>
+    <span style="color:white;font-weight:700;font-size:15px;flex:1" id="review-title">발송 검수</span>
+    <button class="tb-btn" style="font-size:12px;padding:7px 14px" onclick="toggleAllReview(true)">전체 선택</button>
+    <button class="tb-btn" style="font-size:12px;padding:7px 14px;background:#555" onclick="toggleAllReview(false)">전체 해제</button>
+  </nav>
+  <div class="review-body">
+    <div id="review-list"></div>
+    <div id="send-log" style="display:none"></div>
+  </div>
+  <div class="review-footer">
+    <span style="font-size:13px;color:#888;flex:1" id="review-sel-cnt"></span>
+    <button class="tb-btn orange" id="btn-final-send" onclick="doSend()">최종 발송</button>
+    <button class="tb-btn" style="background:#888" onclick="closeReview()">취소</button>
   </div>
 </div>
 
@@ -209,240 +227,276 @@ const GAS_URL  = 'https://script.google.com/macros/s/AKfycbx6GrFoJdEXqfcbVP0NJ4H
 const LANDING  = 'https://parkyttty.github.io/alibaba-landing/';
 const LOCAL_SV = 'http://localhost:3737';
 const PW       = '6420';
-const LS_AUTH  = 'alb_mgr_auth';
 const LS_CFG   = 'alb_section_cfg';
 const LS_CATS  = 'alb_cats';
+const LS_TXT   = 'alb_text_cfg';
 const DEF_CATS = ['뷰티', '식음료', '의류 및 잡화', '가구'];
 
 const SECTIONS = [
-  {key:'global_countries', label:'바이어 수요 국가 TOP 5',      grp:'GLOBAL RFQ'},
-  {key:'global_subcate',   label:'글로벌 인기 서브카테고리',     grp:'GLOBAL RFQ'},
-  {key:'global_kw',        label:'글로벌 인기 검색 키워드',     grp:'GLOBAL RFQ'},
-  {key:'kr_countries',     label:'한국 셀러 바이어 분포 TOP 5', grp:'KR SELLER'},
-  {key:'kr_traffic',       label:'트래픽 지표',                 grp:'KR SELLER'},
-  {key:'kr_subcate',       label:'한국 셀러 인기 서브카테고리',  grp:'KR SELLER'},
-  {key:'kr_kw',            label:'한국 셀러 인기 검색어',       grp:'KR SELLER'},
+  {key:'global_header',   label:'섹션 헤더 (GLOBAL RFQ)',      grp:'GLOBAL RFQ', isHeader:true},
+  {key:'global_countries',label:'바이어 수요 국가 TOP 5',       grp:'GLOBAL RFQ'},
+  {key:'global_subcate',  label:'글로벌 인기 서브카테고리',     grp:'GLOBAL RFQ'},
+  {key:'global_kw',       label:'글로벌 인기 검색 키워드',     grp:'GLOBAL RFQ'},
+  {key:'kr_header',       label:'섹션 헤더 (KR SELLER)',        grp:'KR SELLER', isHeader:true},
+  {key:'kr_countries',    label:'한국 셀러 바이어 분포 TOP 5',  grp:'KR SELLER'},
+  {key:'kr_traffic',      label:'트래픽 지표',                  grp:'KR SELLER'},
+  {key:'kr_subcate',      label:'한국 셀러 인기 서브카테고리',  grp:'KR SELLER'},
+  {key:'kr_kw',           label:'한국 셀러 인기 검색어',       grp:'KR SELLER'},
 ];
 
-// ── Auth ───────────────────────────────────────────────
+const TXT_FIELDS = [
+  {key:'hero_title',  label:'히어로 타이틀',   def:'Go Global.\nGo Alibaba.com.', rows:2},
+  {key:'hero_sub1',   label:'서브타이틀 1행',  def:'글로벌 수출, 지금 바로 시작할 수 있습니다.', rows:1},
+  {key:'hero_sub2',   label:'서브타이틀 2행',  def:'5,000만 명의 바이어가 기다리는 세계 최대 B2B 플랫폼', rows:1},
+  {key:'cta_tagline', label:'CTA 서브문구',    def:'알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.', rows:1},
+  {key:'am_name',     label:'AM 이름',         def:'박영운 (Alibaba.com Account Manager)', rows:1},
+  {key:'am_title',    label:'AM 직책',         def:'알리바바닷컴 코리아 · Global Supplier Development Department', rows:1},
+];
+
+// ── Auth ──────────────────────────────────────────────
 function checkPw() {
   if (document.getElementById('pw-inp').value === PW) {
-    sessionStorage.setItem(LS_AUTH, '1');
-    showAdmin();
+    sessionStorage.setItem('alb_mgr_auth', '1'); showAdmin();
   } else {
     document.getElementById('pw-err').textContent = '비밀번호가 올바르지 않습니다.';
     document.getElementById('pw-inp').value = '';
   }
 }
 document.getElementById('pw-inp').addEventListener('keydown', e => { if (e.key === 'Enter') checkPw(); });
-function logout() { sessionStorage.removeItem(LS_AUTH); location.reload(); }
+function logout() { sessionStorage.removeItem('alb_mgr_auth'); location.reload(); }
 
-// ── State ──────────────────────────────────────────────
-let cats = [], cfg = {}, catStatus = {}, leads = [], filteredLeads = [];
-
+// ── State ─────────────────────────────────────────────
+let cats=[], cfg={}, txtCfg={}, catStatus={}, leads=[], filteredLeads=[], reviewLeads=[];
 function loadState() {
-  try { cfg  = JSON.parse(localStorage.getItem(LS_CFG)  || '{}'); } catch(e) { cfg = {}; }
-  try { cats = JSON.parse(localStorage.getItem(LS_CATS) || JSON.stringify(DEF_CATS)); } catch(e) { cats = [...DEF_CATS]; }
+  try { cfg    = JSON.parse(localStorage.getItem(LS_CFG)  || '{}'); } catch(e) { cfg={}; }
+  try { cats   = JSON.parse(localStorage.getItem(LS_CATS) || JSON.stringify(DEF_CATS)); } catch(e) { cats=[...DEF_CATS]; }
+  try { txtCfg = JSON.parse(localStorage.getItem(LS_TXT)  || '{}'); } catch(e) { txtCfg={}; }
 }
 function saveState() {
-  localStorage.setItem(LS_CFG,  JSON.stringify(cfg));
+  localStorage.setItem(LS_CFG, JSON.stringify(cfg));
   localStorage.setItem(LS_CATS, JSON.stringify(cats));
 }
 function secOn(cat, key) { return !cfg[cat] || cfg[cat][key] !== false; }
-function setSecOn(cat, key, val) { if (!cfg[cat]) cfg[cat] = {}; cfg[cat][key] = val; }
+function setSecOn(cat, key, val) { if (!cfg[cat]) cfg[cat]={}; cfg[cat][key]=val; }
 
-// ── Tab ────────────────────────────────────────────────
 function switchTab(name, btn) {
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + name).classList.add('active');
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
   btn.classList.add('active');
 }
 
-// ── Category/Section panel ─────────────────────────────
+// ── Sections panel ────────────────────────────────────
 function renderCats() {
   const list = document.getElementById('cat-list');
-  document.getElementById('cat-cnt').textContent = cats.length + '개';
+  document.getElementById('cat-cnt').textContent = cats.length+'개';
   list.innerHTML = '';
   cats.forEach((cat, idx) => {
     const grps = {};
-    SECTIONS.forEach(s => { if (!grps[s.grp]) grps[s.grp] = []; grps[s.grp].push(s); });
+    SECTIONS.forEach(s => { if (!grps[s.grp]) grps[s.grp]=[]; grps[s.grp].push(s); });
     const grpHtml = Object.entries(grps).map(([g, secs]) => `
       <div class="grp-lbl">${g}</div>
-      <div class="tog-rows">${secs.map(s => `
-        <div class="tog-row">
+      <div class="tog-rows">${secs.map(s=>`
+        <div class="tog-row${s.isHeader?' header-row':''}">
           <span class="tog-nm">${s.label}</span>
           <label class="switch">
-            <input type="checkbox" data-cat="${cat}" data-key="${s.key}" ${secOn(cat, s.key) ? 'checked' : ''} onchange="onTog(this)">
+            <input type="checkbox" data-cat="${cat}" data-key="${s.key}" ${secOn(cat,s.key)?'checked':''} onchange="onTog(this)">
             <span class="sw-sl"></span>
           </label>
         </div>`).join('')}
       </div>`).join('');
 
     const st = catStatus[cat];
-    const badge = st === undefined
-      ? `<span class="badge badge-chk">확인 중...</span>`
+    const badge = st===undefined ? `<span class="badge badge-chk">확인 중...</span>`
       : st ? `<span class="badge badge-ok">데이터 있음</span>` : `<span class="badge badge-no">데이터 없음</span>`;
     const isCustom = idx >= DEF_CATS.length;
-    const delBtn = isCustom ? `<button class="del-btn" onclick="event.stopPropagation();deleteCat('${cat}')">삭제</button>` : '';
 
     const div = document.createElement('div');
-    div.className = 'card';
-    div.id = 'card-' + cat;
-    div.innerHTML = `
+    div.className='card'; div.id='card-'+cat;
+    div.innerHTML=`
       <div class="cat-hd" onclick="this.parentElement.classList.toggle('open')">
-        <span class="cat-nm">${cat}</span>
-        ${badge}
+        <span class="cat-nm">${cat}</span>${badge}
         <a class="preview-a" href="${LANDING}?category=${encodeURIComponent(cat)}" target="_blank" onclick="event.stopPropagation()">미리보기 →</a>
         <span class="cat-arrow">▼</span>
       </div>
-      <div class="cat-body">
-        ${grpHtml}
+      <div class="cat-body">${grpHtml}
         <div class="save-row">
-          <button class="save-btn" onclick="saveCat('${cat}',this)">저장</button>
+          <button class="save-btn" onclick="saveCat('${cat}')">저장</button>
           <span class="saved-msg" id="msg-${cat}">저장 완료 ✓</span>
-          ${delBtn}
+          <button class="update-btn" id="upd-${cat}" onclick="updateCatData('${cat}')">데이터 업데이트</button>
+          ${isCustom?`<button class="del-btn" onclick="event.stopPropagation();deleteCat('${cat}')">삭제</button>`:''}
         </div>
+        <div class="update-log" id="upd-log-${cat}"></div>
       </div>`;
     list.appendChild(div);
   });
 }
 
 function onTog(cb) { setSecOn(cb.dataset.cat, cb.dataset.key, cb.checked); }
-
-function saveCat(cat, btn) {
+function saveCat(cat) {
   saveState();
-  const msg = document.getElementById('msg-' + cat);
-  msg.style.display = 'inline';
-  setTimeout(() => msg.style.display = 'none', 2000);
+  const msg=document.getElementById('msg-'+cat);
+  msg.style.display='inline'; setTimeout(()=>msg.style.display='none', 2000);
 }
-
 function addCat() {
-  const inp = document.getElementById('new-cat');
-  const v = inp.value.trim();
-  if (!v || cats.includes(v)) { inp.focus(); return; }
-  cats.push(v);
-  saveState();
-  inp.value = '';
-  renderCats();
-  checkStatus([v]);
+  const inp=document.getElementById('new-cat');
+  const v=inp.value.trim();
+  if (!v||cats.includes(v)) { inp.focus(); return; }
+  cats.push(v); saveState(); inp.value='';
+  renderCats(); checkStatus([v]);
 }
-
 function deleteCat(cat) {
-  if (!confirm(cat + ' 카테고리를 삭제하시겠습니까?')) return;
-  cats = cats.filter(c => c !== cat);
-  delete cfg[cat];
-  saveState();
-  renderCats();
+  if (!confirm(cat+' 카테고리를 삭제하시겠습니까?')) return;
+  cats=cats.filter(c=>c!==cat); delete cfg[cat]; saveState(); renderCats();
 }
 
 async function checkStatus(targets) {
-  await Promise.all((targets || cats).map(async cat => {
-    catStatus[cat] = undefined;
-    const card = document.getElementById('card-' + cat);
-    if (card) { const b = card.querySelector('.badge'); if (b) { b.className = 'badge badge-chk'; b.textContent = '확인 중...'; } }
+  await Promise.all((targets||cats).map(async cat => {
+    catStatus[cat]=undefined;
+    const card=document.getElementById('card-'+cat);
+    if (card) { const b=card.querySelector('.badge'); if(b){b.className='badge badge-chk';b.textContent='확인 중...';} }
     try {
-      const r = await fetch(GAS_URL + '?format=json&category=' + encodeURIComponent(cat));
-      const d = await r.json();
-      catStatus[cat] = !!(d && d.rfq_count && d.rfq_count !== '—');
-    } catch(e) { catStatus[cat] = false; }
-    const card2 = document.getElementById('card-' + cat);
-    if (card2) {
-      const b = card2.querySelector('.badge');
-      if (b) { b.className = catStatus[cat] ? 'badge badge-ok' : 'badge badge-no'; b.textContent = catStatus[cat] ? '데이터 있음' : '데이터 없음'; }
-    }
+      const r=await fetch(GAS_URL+'?format=json&category='+encodeURIComponent(cat));
+      const d=await r.json();
+      catStatus[cat]=!!(d&&d.rfq_count&&d.rfq_count!=='—');
+    } catch(e) { catStatus[cat]=false; }
+    const c2=document.getElementById('card-'+cat);
+    if (c2) { const b=c2.querySelector('.badge'); if(b){b.className=catStatus[cat]?'badge badge-ok':'badge badge-no';b.textContent=catStatus[cat]?'데이터 있음':'데이터 없음';} }
   }));
 }
 
-// ── Email panel ────────────────────────────────────────
-async function loadLeads() {
-  const btn = document.getElementById('btn-load');
-  const st  = document.getElementById('lead-status');
-  btn.disabled = true; btn.textContent = '불러오는 중...';
-  st.textContent = 'localhost:3737 서버에 요청 중...';
+async function updateCatData(cat) {
+  const btn=document.getElementById('upd-'+cat);
+  const log=document.getElementById('upd-log-'+cat);
+  btn.disabled=true; btn.textContent='업데이트 중...';
+  log.style.display='block'; log.textContent='localhost:3737에 요청 중... (1~2분 소요)';
   try {
-    const r = await fetch(LOCAL_SV + '/admin/leads', { method: 'GET' });
-    if (!r.ok) throw new Error('서버 응답 오류 ' + r.status);
-    const d = await r.json();
-    if (!d.ok) throw new Error(d.error || '알 수 없는 오류');
-    leads = d.data || [];
-    st.textContent = leads.length + '개 리드 로드됨';
-    buildCatFilter();
-    applyFilter();
+    const r=await fetch(LOCAL_SV+'/admin/update-data', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({category:cat})
+    });
+    if (!r.ok) throw new Error('서버 오류 '+r.status);
+    const d=await r.json();
+    if (d.ok) {
+      log.textContent='✓ 완료: '+d.message;
+      catStatus[cat]=true;
+      const c=document.getElementById('card-'+cat);
+      if (c) { const b=c.querySelector('.badge'); if(b){b.className='badge badge-ok';b.textContent='데이터 있음';} }
+    } else {
+      log.textContent='오류: '+(d.error||'알 수 없는 오류');
+    }
   } catch(e) {
-    st.textContent = '오류: ' + e.message + ' (server.js 실행 중인지 확인)';
+    log.textContent='오류: '+e.message+' (server.js 실행 중인지 확인)';
   }
-  btn.disabled = false; btn.textContent = '리드 불러오기';
+  btn.disabled=false; btn.textContent='데이터 업데이트';
 }
 
+// ── Text panel ────────────────────────────────────────
+function renderTxtPanel() {
+  document.getElementById('txt-fields').innerHTML = TXT_FIELDS.map(f=>`
+    <div class="txt-field">
+      <div class="txt-lbl">${f.label}</div>
+      <textarea class="txt-inp" id="tf-${f.key}" rows="${f.rows}" placeholder="${f.def}">${txtCfg[f.key]||''}</textarea>
+      <div class="txt-default">기본값: ${f.def.length>70?f.def.slice(0,70)+'...':f.def}</div>
+    </div>`).join('');
+}
+function saveTxt() {
+  TXT_FIELDS.forEach(f=>{
+    const v=document.getElementById('tf-'+f.key).value.trim();
+    if (v) txtCfg[f.key]=v; else delete txtCfg[f.key];
+  });
+  localStorage.setItem(LS_TXT, JSON.stringify(txtCfg));
+  const msg=document.getElementById('txt-saved');
+  msg.style.display='inline'; setTimeout(()=>msg.style.display='none', 2000);
+}
+function resetTxt() {
+  if (!confirm('모든 문구를 기본값으로 되돌리겠습니까?')) return;
+  txtCfg={}; localStorage.removeItem(LS_TXT);
+  TXT_FIELDS.forEach(f=>{ document.getElementById('tf-'+f.key).value=''; });
+}
+
+// ── Email panel ───────────────────────────────────────
+async function loadLeads() {
+  const btn=document.getElementById('btn-load');
+  const st=document.getElementById('lead-status');
+  btn.disabled=true; btn.textContent='불러오는 중...';
+  st.textContent='localhost:3737 요청 중... (30~60초 소요)';
+  try {
+    const r=await fetch(LOCAL_SV+'/admin/leads');
+    if (!r.ok) throw new Error('서버 오류 '+r.status);
+    const d=await r.json();
+    if (!d.ok) throw new Error(d.error||'알 수 없는 오류');
+    leads=d.data||[]; st.textContent=leads.length+'개 로드됨';
+    buildCatFilter(); applyFilter();
+  } catch(e) {
+    st.textContent='오류: '+e.message+' (server.js 실행 중인지 확인)';
+  }
+  btn.disabled=false; btn.textContent='리드 불러오기';
+}
 function buildCatFilter() {
-  const sel = document.getElementById('filter-cat');
-  const cats = [...new Set(leads.map(l => l.category).filter(Boolean))];
-  sel.innerHTML = '<option value="">전체 카테고리</option>' + cats.map(c => `<option value="${c}">${c}</option>`).join('');
+  const sel=document.getElementById('filter-cat');
+  const cts=[...new Set(leads.map(l=>l.category).filter(Boolean))];
+  sel.innerHTML='<option value="">전체 카테고리</option>'+cts.map(c=>`<option>${c}</option>`).join('');
 }
-
 function applyFilter() {
-  const catF  = document.getElementById('filter-cat').value;
-  const sentF = document.getElementById('filter-sent').value;
-  filteredLeads = leads.filter(l => {
-    if (catF && l.category !== catF) return false;
-    if (sentF === 'y' && !l.sentAt) return false;
-    if (sentF === 'n' && l.sentAt)  return false;
+  const catF=document.getElementById('filter-cat').value;
+  const sentF=document.getElementById('filter-sent').value;
+  filteredLeads=leads.filter(l=>{
+    if (catF&&l.category!==catF) return false;
+    if (sentF==='y'&&!l.sentAt) return false;
+    if (sentF==='n'&&l.sentAt) return false;
     return true;
   });
   renderLeads();
 }
-
 function renderLeads() {
-  const tbody = document.getElementById('lead-tbody');
+  const tbody=document.getElementById('lead-tbody');
   if (!filteredLeads.length) {
-    tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:36px;color:#bbb;font-size:13px">해당 리드 없음</td></tr>';
-    return;
+    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;padding:36px;color:#bbb;font-size:13px">해당 리드 없음</td></tr>'; return;
   }
-  tbody.innerHTML = filteredLeads.map((l, i) => `
+  tbody.innerHTML=filteredLeads.map((l,i)=>`
     <tr>
-      <td><input type="checkbox" class="row-chk" data-idx="${i}" onchange="updateSendBtn()"></td>
-      <td style="font-weight:700">${l.company || '—'}</td>
-      <td>${l.name || '—'}</td>
-      <td style="color:#FF6600">${l.email || '—'}</td>
-      <td><span class="cat-chip">${l.category || '—'}</span></td>
-      <td>${l.status || '—'}</td>
-      <td><span class="sent-badge ${l.sentAt ? 'sent-y' : 'sent-n'}">${l.sentAt ? '발송완료' : '미발송'}</span></td>
+      <td><input type="checkbox" class="row-chk" data-idx="${i}" onchange="updateReviewBtn()"></td>
+      <td style="font-weight:700">${l.company||'—'}</td>
+      <td>${l.name||'—'}</td>
+      <td style="color:#FF6600">${l.email||'—'}</td>
+      <td><span class="cat-chip">${l.category||'—'}</span></td>
+      <td>${l.status||'—'}</td>
+      <td><span class="sent-badge ${l.sentAt?'sent-y':'sent-n'}">${l.sentAt?'발송완료':'미발송'}</span></td>
     </tr>`).join('');
-  document.getElementById('chk-all').checked = false;
-  updateSendBtn();
+  document.getElementById('chk-all').checked=false;
+  updateReviewBtn();
 }
-
 function toggleAll(cb) {
-  document.querySelectorAll('.row-chk').forEach(c => c.checked = cb.checked);
-  updateSendBtn();
+  document.querySelectorAll('.row-chk').forEach(c=>c.checked=cb.checked); updateReviewBtn();
 }
-
-function updateSendBtn() {
-  const cnt = document.querySelectorAll('.row-chk:checked').length;
-  document.getElementById('btn-send').disabled = cnt === 0;
-  document.getElementById('btn-send').textContent = cnt > 0 ? `선택 발송 (${cnt}건)` : '선택 발송';
+function updateReviewBtn() {
+  const cnt=document.querySelectorAll('.row-chk:checked').length;
+  const btn=document.getElementById('btn-review');
+  btn.disabled=cnt===0;
+  btn.textContent=cnt>0?`발송 검수 (${cnt}건) →`:'발송 검수 →';
 }
-
 function getSelected() {
-  const idxs = [...document.querySelectorAll('.row-chk:checked')].map(c => parseInt(c.dataset.idx));
-  return idxs.map(i => filteredLeads[i]).filter(l => l.email);
+  return [...document.querySelectorAll('.row-chk:checked')]
+    .map(c=>filteredLeads[parseInt(c.dataset.idx)]).filter(l=>l&&l.email);
 }
 
-// ── Send modal ─────────────────────────────────────────
-function buildEmailBody(lead) {
-  const utmUrl = `${LANDING}?category=${encodeURIComponent(lead.category || '뷰티')}&utm_content=${encodeURIComponent(lead.crmId || '')}`;
+// ── Email helpers ─────────────────────────────────────
+function buildSubject(l) { return `[${l.company}] ${l.category||''} 카테고리 글로벌 바이어 수요 동향 리포트 공유의 건 (알리바바닷컴)`; }
+function buildUtmUrl(l)  { return `${LANDING}?category=${encodeURIComponent(l.category||'')}&utm_content=${encodeURIComponent(l.crmId||'')}`; }
+function buildBody(l) {
   return `안녕하십니까.
 
 알리바바닷컴 코리아 Global Supplier Development Department 박영운 Account Manager입니다.
 
-${lead.company}에서 우수한 제품을 제조하시는 것을 확인하였습니다.
+${l.company}에서 우수한 제품을 제조하시는 것을 확인하였습니다.
 
-알리바바닷컴 플랫폼 내 ${lead.category || ''} 카테고리의 글로벌 바이어 수요 동향 리포트를 공유드리고자 연락드립니다.
+알리바바닷컴 플랫폼 내 ${l.category||''} 카테고리의 글로벌 바이어 수요 동향 리포트를 공유드리고자 연락드립니다.
 
 아래 링크를 통해 귀사 카테고리의 최신 글로벌 바이어 동향과 주요 수요 국가, 인기 키워드를 확인하실 수 있습니다.
 
-▶ 수요 동향 리포트 바로보기: ${utmUrl}
+▶ 수요 동향 리포트 바로보기: ${buildUtmUrl(l)}
 
 글로벌 시장에서 새로운 기회를 찾고 계신다면, 30분 내외의 미팅을 요청드리고 싶습니다.
 
@@ -456,94 +510,92 @@ Global Supplier Development Department
 y.bak@alibaba-inc.com`;
 }
 
-function buildSubject(lead) {
-  return `[${lead.company}] ${lead.category || ''} 카테고리 글로벌 바이어 수요 동향 리포트 공유의 건 (알리바바닷컴)`;
-}
+// ── Review screen ─────────────────────────────────────
+function goReview() {
+  reviewLeads=getSelected();
+  if (!reviewLeads.length) return;
+  document.getElementById('review-title').textContent=`발송 검수 — ${reviewLeads.length}건`;
+  document.getElementById('send-log').style.display='none';
+  document.getElementById('send-log').innerHTML='';
+  document.getElementById('btn-final-send').disabled=false;
+  document.getElementById('btn-final-send').textContent='최종 발송';
 
-function openSendModal() {
-  const sel = getSelected();
-  if (!sel.length) return;
-  document.getElementById('modal-title').textContent = `이메일 발송 확인 (${sel.length}건)`;
-  const preview = sel.slice(0, 3).map(l => `
-    <div style="border:1px solid #f0f0f0;border-radius:10px;padding:16px;margin-bottom:12px">
-      <div class="field-row"><div class="field-lbl">받는 사람</div><div class="field-val">${l.company} &lt;${l.email}&gt;</div></div>
-      <div class="field-row"><div class="field-lbl">제목</div><div class="field-val subj">${buildSubject(l)}</div></div>
-      <div class="field-row"><div class="field-lbl">본문 미리보기</div><div class="email-body-preview">${buildEmailBody(l)}</div></div>
+  document.getElementById('review-list').innerHTML=reviewLeads.map((l,i)=>`
+    <div class="review-card" id="rc-${i}">
+      <div class="review-card-hd" onclick="this.parentElement.classList.toggle('open')">
+        <label onclick="event.stopPropagation()" style="display:flex;align-items:center;gap:6px;cursor:pointer">
+          <input type="checkbox" class="rv-chk" data-idx="${i}" checked onchange="updateFinalCnt()">
+        </label>
+        <span class="review-card-idx">${i+1}</span>
+        <span class="review-card-co">${l.company}</span>
+        <span class="review-card-email">${l.email}</span>
+        <span class="cat-chip">${l.category||''}</span>
+        <span class="rv-arrow">▼</span>
+      </div>
+      <div class="review-card-body">
+        <div class="rf-row"><div class="rf-lbl">받는 사람</div><div class="rf-val">${l.company} &lt;${l.email}&gt;</div></div>
+        <div class="rf-row"><div class="rf-lbl">제목</div><div class="rf-val subj">${buildSubject(l)}</div></div>
+        <div class="rf-row"><div class="rf-lbl">발송 링크 (UTM)</div><div class="rf-val link">${buildUtmUrl(l)}</div></div>
+        <div class="rf-row"><div class="rf-lbl">본문</div><div class="email-preview">${buildBody(l)}</div></div>
+      </div>
     </div>`).join('');
-  const more = sel.length > 3 ? `<div style="text-align:center;color:#aaa;font-size:12px;padding:8px">+${sel.length-3}건 더</div>` : '';
-  document.getElementById('modal-body').innerHTML = preview + more + '<div class="progress-log" id="send-log" style="display:none"></div>';
-  document.getElementById('modal-status').textContent = '';
-  document.getElementById('modal-send-btn').disabled = false;
-  document.getElementById('modal-send-btn').textContent = '발송 시작';
-  document.getElementById('modal').classList.add('show');
-}
 
-function closeModal() { document.getElementById('modal').classList.remove('show'); }
-document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+  updateFinalCnt();
+  document.getElementById('review-screen').style.display='block';
+  window.scrollTo(0,0);
+}
+function closeReview() { document.getElementById('review-screen').style.display='none'; }
+function toggleAllReview(v) { document.querySelectorAll('.rv-chk').forEach(c=>c.checked=v); updateFinalCnt(); }
+function updateFinalCnt() {
+  const cnt=document.querySelectorAll('.rv-chk:checked').length;
+  document.getElementById('review-sel-cnt').textContent=`${cnt}건 선택됨`;
+  const btn=document.getElementById('btn-final-send');
+  btn.textContent=cnt>0?`최종 발송 (${cnt}건)`:'최종 발송';
+  btn.disabled=cnt===0;
+}
 
 async function doSend() {
-  const sel = getSelected();
-  if (!sel.length) return;
-  const btn = document.getElementById('modal-send-btn');
-  const log = document.getElementById('send-log');
-  const st  = document.getElementById('modal-status');
-  btn.disabled = true; btn.textContent = '발송 중...';
-  log.style.display = 'block'; log.textContent = '';
-  st.textContent = '';
+  const selected=[...document.querySelectorAll('.rv-chk:checked')]
+    .map(c=>reviewLeads[parseInt(c.dataset.idx)]).filter(Boolean);
+  if (!selected.length) return;
 
-  const emails = sel.map(l => ({
-    to:      l.email,
-    company: l.company,
-    name:    l.name || '',
-    subject: buildSubject(l),
-    body:    buildEmailBody(l),
-    crmId:   l.crmId || '',
-  }));
+  const btn=document.getElementById('btn-final-send');
+  const log=document.getElementById('send-log');
+  btn.disabled=true; btn.textContent='발송 중...';
+  log.style.display='block'; log.innerHTML='<span>서버에 요청 중...</span>';
 
-  function appendLog(msg, cls) {
-    const span = document.createElement('span');
-    if (cls) span.className = cls;
-    span.textContent = msg + '\n';
-    log.appendChild(span);
-    log.scrollTop = log.scrollHeight;
-  }
+  const SIG='<img src="https://parkyttty.github.io/alibaba-landing/signature.png" width="344" height="110" alt="박영운 서명">';
+  const emails=selected.map(l=>({to:l.email,company:l.company,subject:buildSubject(l),body:buildBody(l),crmId:l.crmId||''}));
 
   try {
-    appendLog('서버에 발송 요청 중...');
-    const r = await fetch(LOCAL_SV + '/admin/send-emails', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ emails }),
+    const r=await fetch(LOCAL_SV+'/admin/send-emails',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({emails,sig:SIG})
     });
-    if (!r.ok) throw new Error('서버 오류 ' + r.status);
-    const result = await r.json();
-
-    if (result.log) {
-      result.log.forEach(entry => {
-        if (entry.ok) appendLog('✓ 발송 완료: ' + entry.to, 'progress-ok');
-        else appendLog('✗ 실패: ' + entry.to + ' — ' + entry.error, 'progress-err');
-      });
-    }
-    const okCnt = (result.log || []).filter(e => e.ok).length;
-    st.textContent = `완료: ${okCnt}/${sel.length}건 발송됨`;
-    btn.textContent = '완료';
+    if (!r.ok) throw new Error('서버 오류 '+r.status);
+    const result=await r.json();
+    log.innerHTML='';
+    (result.log||[]).forEach(e=>{
+      const span=document.createElement('span');
+      span.className=e.ok?'log-ok':'log-err';
+      span.textContent=e.ok?`✓ 발송 완료: ${e.to}`:`✗ 실패: ${e.to} — ${e.error||''}`;
+      log.appendChild(span);
+    });
+    const ok=(result.log||[]).filter(e=>e.ok).length;
+    btn.textContent=`완료 (${ok}/${selected.length})`;
   } catch(e) {
-    appendLog('오류: ' + e.message + ' (server.js 실행 중인지 확인)', 'progress-err');
-    st.textContent = '발송 실패';
-    btn.disabled = false; btn.textContent = '재시도';
+    log.innerHTML='<span class="log-err">오류: '+e.message+'</span>';
+    btn.disabled=false; btn.textContent='재시도';
   }
 }
 
-// ── Init ───────────────────────────────────────────────
+// ── Init ──────────────────────────────────────────────
 function showAdmin() {
-  document.getElementById('pw-screen').style.display = 'none';
-  document.getElementById('admin').style.display = 'block';
-  loadState();
-  renderCats();
-  checkStatus();
+  document.getElementById('pw-screen').style.display='none';
+  document.getElementById('admin').style.display='block';
+  loadState(); renderCats(); renderTxtPanel(); checkStatus();
 }
-
-if (sessionStorage.getItem(LS_AUTH) === '1') showAdmin();
+if (sessionStorage.getItem('alb_mgr_auth')==='1') showAdmin();
 </script>
 </body>
 </html>

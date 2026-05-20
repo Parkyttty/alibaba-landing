@@ -332,11 +332,17 @@
     <div>
       <p style="font-size:11px;color:#666;letter-spacing:.12em;margin-bottom:18px;text-transform:uppercase;">Make It Happen</p>
       <h2 class="cta-big">Make it easy to<br>do business<br><span class="orange">everywhere.</span></h2>
-      <p class="cta-tagline">알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.</p>
-      <div><div class="am-label">담당 AM</div><div class="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title">알리바바닷컴 코리아 · Global Supplier Development Department</div></div>
-      <div style="margin-top:24px;display:flex;align-items:center;gap:16px">
-        <div id="qr-box" style="width:88px;height:88px;border-radius:8px;background:white;padding:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center"></div>
-        <div style="font-size:12px;color:#777;line-height:1.6">QR코드로 바로<br>Alibaba.com 접속</div>
+      <p class="cta-tagline" id="cta-tagline">알리바바닷컴과 함께 글로벌 시장에서 새로운 기회를 만드세요.</p>
+      <div><div class="am-label">담당 AM</div><div class="am-name" id="am-name">박영운 (Alibaba.com Account Manager)</div><div class="am-title" id="am-title">알리바바닷컴 코리아 · Global Supplier Development Department</div></div>
+      <div style="margin-top:24px;display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+        <div style="text-align:center">
+          <div id="qr-box" style="width:80px;height:80px;border-radius:8px;background:white;padding:4px;display:flex;align-items:center;justify-content:center"></div>
+          <div style="font-size:10px;color:#666;margin-top:5px">Alibaba.com</div>
+        </div>
+        <div style="text-align:center">
+          <img src="./contact-qr.png" alt="담당자 연락처" style="width:80px;height:80px;border-radius:8px;background:white;padding:3px;display:block">
+          <div style="font-size:10px;color:#666;margin-top:5px">담당자 연락처</div>
+        </div>
       </div>
     </div>
     <div class="cta-stats-list">
@@ -450,9 +456,11 @@ function renderIndustry(d, category) {
     } catch(e) { return true; }
   }
 
+  var blkGHeader   = secOn('global_header')    ? `<div class="sec-head g"><span class="sh-badge">GLOBAL RFQ</span><div><div class="sh-title">글로벌 수요 현황</div><div class="sh-sub">rfq-analysis · Alibaba.com 실제 글로벌 바이어 견적 요청 데이터</div></div></div>` : '';
   var blkGCountry  = secOn('global_countries') ? `<div class="ind-blk"><div class="blk-title">바이어 수요 국가 TOP 5 <span class="note">RFQ 건수 기준</span></div><div class="c-list">${[1,2,3,4,5].map(gRow).join('')}</div></div>` : '';
   var blkGSubcate  = secOn('global_subcate')   ? `<div class="ind-blk"><div class="blk-title">글로벌 인기 서브카테고리 <span class="note">RFQ 건수 · 주요 수요국</span></div><div class="sc-grid">${[1,2,3,4,5,6].map(gsc).join('')}</div></div>` : '';
   var blkGKw       = secOn('global_kw')        ? `<div class="ind-blk"><div class="blk-title">글로벌 바이어 인기 검색 키워드</div><div class="kw-chips">${[1,2,3,4,5,6].map(gkw).join('')}</div></div>` : '';
+  var blkKrHeader  = secOn('kr_header')        ? `<div class="sec-head k"><span class="sh-badge">KR SELLER</span><div><div class="sh-title">한국 셀러 현황</div><div class="sh-sub">ggs-crm · 알리바바 한국 셀러 실제 판매 데이터</div></div></div>` : '';
   var blkKrCountry = secOn('kr_countries')     ? `<div class="ind-blk"><div class="blk-title">한국 셀러 바이어 분포 TOP 5 <span class="note">IPV 기준</span></div>${hasKrCountry ? `<div class="c-list">${[1,2,3,4,5].map(kRow).join('')}</div>` : krNA}</div>` : '';
   var blkKrTraffic = secOn('kr_traffic')       ? trafficBlk : '';
   var blkKrSubcate = secOn('kr_subcate')       ? `<div class="ind-blk"><div class="blk-title">한국 셀러 인기 서브카테고리 <span class="note">Opportunity Index 기준</span></div>${hasKrSubcate ? `<div class="sc-grid">${[1,2,3,4,5,6].map(ksc).join('')}</div>` : krNA}</div>` : '';
@@ -476,16 +484,8 @@ function renderIndustry(d, category) {
         <div class="ind-hero-sub">글로벌 RFQ 기준 1위 바이어 국가</div>
       </div>
     </div>
-    <div class="sec-head g">
-      <span class="sh-badge">GLOBAL RFQ</span>
-      <div><div class="sh-title">글로벌 수요 현황</div><div class="sh-sub">rfq-analysis · Alibaba.com 실제 글로벌 바이어 견적 요청 데이터</div></div>
-    </div>
-    ${blkGCountry}${blkGSubcate}${blkGKw}
-    <div class="sec-head k">
-      <span class="sh-badge">KR SELLER</span>
-      <div><div class="sh-title">한국 셀러 현황</div><div class="sh-sub">ggs-crm · 알리바바 한국 셀러 실제 판매 데이터</div></div>
-    </div>
-    ${blkKrCountry}${blkKrTraffic}${blkKrSubcate}${blkKrKw}
+    ${blkGHeader}${blkGCountry}${blkGSubcate}${blkGKw}
+    ${blkKrHeader}${blkKrCountry}${blkKrTraffic}${blkKrSubcate}${blkKrKw}
   </div>`;
 }
 
@@ -508,8 +508,24 @@ function renderIndustry(d, category) {
   // QR 코드 생성
   var qrBox = document.getElementById('qr-box');
   if (qrBox && typeof QRCode !== 'undefined') {
-    new QRCode(qrBox, { text: 'https://www.alibaba.com/', width: 80, height: 80, correctLevel: QRCode.CorrectLevel.H });
+    new QRCode(qrBox, { text: 'https://www.alibaba.com/', width: 72, height: 72, correctLevel: QRCode.CorrectLevel.H });
   }
+
+  // 텍스트 설정 적용
+  (function(){
+    var tc = {};
+    try { tc = JSON.parse(localStorage.getItem('alb_text_cfg') || '{}'); } catch(e) {}
+    function applyTxt(id, val) { var el = document.getElementById(id); if (el && val) el.textContent = val; }
+    applyTxt('cta-tagline', tc.cta_tagline);
+    applyTxt('am-name',     tc.am_name);
+    applyTxt('am-title',    tc.am_title);
+    if (tc.hero_title) {
+      var ht = document.querySelector('.hero-title');
+      if (ht) ht.innerHTML = tc.hero_title.replace(/\n/g, '<br>');
+    }
+    if (tc.hero_sub1) { var h1 = document.querySelector('.hero-sub1'); if (h1) h1.textContent = tc.hero_sub1; }
+    if (tc.hero_sub2) { var h2 = document.querySelector('.hero-sub2'); if (h2) h2.textContent = tc.hero_sub2; }
+  })();
 })();
 </script>
 </body>
