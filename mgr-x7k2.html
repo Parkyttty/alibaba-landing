@@ -92,6 +92,19 @@
     .tb-btn.orange:hover{background:#e05a00}
     .filter-sel{border:2px solid #e8e8e8;border-radius:8px;padding:9px 12px;font-size:13px;outline:none;font-family:inherit;background:white}
     .status-txt{font-size:13px;color:#888}
+    .filter-area{background:white;border-radius:12px;padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+    .filter-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .filter-row+.filter-row{margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0}
+    .filter-label{font-size:11px;font-weight:700;color:#aaa;letter-spacing:.08em;text-transform:uppercase;min-width:60px}
+    .fchip{display:inline-flex;align-items:center;gap:5px;padding:6px 14px;border-radius:999px;font-size:12px;font-weight:700;border:2px solid #e8e8e8;background:white;color:#888;cursor:pointer;transition:.15s;user-select:none}
+    .fchip:hover{border-color:#ccc;color:#555}
+    .fchip.on{background:#FF6600;border-color:#FF6600;color:white}
+    .fchip .cnt{font-size:10px;opacity:.75}
+    .quick-btns{display:flex;gap:6px;flex-wrap:wrap}
+    .quick-btn{background:none;border:1.5px solid #e8e8e8;border-radius:8px;padding:6px 12px;font-size:12px;font-weight:700;color:#888;cursor:pointer;font-family:inherit;transition:.15s}
+    .quick-btn:hover{border-color:#FF6600;color:#FF6600}
+    .quick-btn.accent{border-color:#1a7a3b;color:#1a7a3b}
+    .quick-btn.accent:hover{background:#1a7a3b;color:white}
 
     .lead-table-wrap{border-radius:12px;overflow:hidden;background:white;box-shadow:0 1px 8px rgba(0,0,0,.07)}
     table.leads{width:100%;border-collapse:collapse;min-width:700px}
@@ -190,12 +203,27 @@
       <div class="sec-title">이메일 발송</div>
       <div class="toolbar">
         <button class="tb-btn" id="btn-load" onclick="loadLeads()">리드 불러오기</button>
-        <select class="filter-sel" id="filter-cat" onchange="applyFilter()"><option value="">전체 카테고리</option></select>
-        <select class="filter-sel" id="filter-sent" onchange="applyFilter()">
-          <option value="">전체</option><option value="n">미발송</option><option value="y">발송완료</option>
-        </select>
         <button class="tb-btn orange" id="btn-review" onclick="goReview()" disabled>발송 검수 →</button>
         <span class="status-txt" id="lead-status"></span>
+      </div>
+      <div class="filter-area" id="filter-area" style="display:none">
+        <div class="filter-row">
+          <span class="filter-label">카테고리</span>
+          <div class="quick-btns">
+            <button class="quick-btn accent" onclick="selectDataCats()">✓ 데이터 완성만</button>
+            <button class="quick-btn" onclick="selectAllCats()">전체 선택</button>
+            <button class="quick-btn" onclick="clearCats()">전체 해제</button>
+          </div>
+          <div id="cat-chips" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;width:100%"></div>
+        </div>
+        <div class="filter-row">
+          <span class="filter-label">발송여부</span>
+          <div style="display:flex;gap:6px">
+            <span class="fchip on" id="fs-all" onclick="setSentFilter('')">전체</span>
+            <span class="fchip" id="fs-n" onclick="setSentFilter('n')">미발송</span>
+            <span class="fchip" id="fs-y" onclick="setSentFilter('y')">발송완료</span>
+          </div>
+        </div>
       </div>
       <div class="lead-table-wrap" style="overflow-x:auto">
         <table class="leads">
@@ -441,18 +469,60 @@ async function loadLeads() {
   }
   btn.disabled=false; btn.textContent='리드 불러오기';
 }
+let selectedCats=new Set();  // 빈 Set = 전체
+let sentFilter='';
+
 function buildCatFilter() {
-  const sel=document.getElementById('filter-cat');
   const cts=[...new Set(leads.map(l=>l.category).filter(Boolean))];
-  sel.innerHTML='<option value="">전체 카테고리</option>'+cts.map(c=>`<option>${c}</option>`).join('');
+  // 리드에 있는 카테고리만 초기 전체 선택
+  selectedCats=new Set(cts);
+  renderCatChips(cts);
+  document.getElementById('filter-area').style.display='block';
+}
+
+function renderCatChips(cts) {
+  const ctsToUse=cts||[...new Set(leads.map(l=>l.category).filter(Boolean))];
+  const wrap=document.getElementById('cat-chips');
+  const counts={};
+  leads.forEach(l=>{if(l.category) counts[l.category]=(counts[l.category]||0)+1;});
+  wrap.innerHTML=ctsToUse.map(c=>`
+    <span class="fchip ${selectedCats.has(c)?'on':''}" onclick="toggleCat('${c}')" id="fchip-${c.replace(/\s/g,'_')}">
+      ${c} <span class="cnt">${counts[c]||0}</span>
+    </span>`).join('');
+}
+
+function toggleCat(cat) {
+  if (selectedCats.has(cat)) selectedCats.delete(cat); else selectedCats.add(cat);
+  updateChipUi(); applyFilter();
+}
+function selectAllCats() {
+  const cts=[...new Set(leads.map(l=>l.category).filter(Boolean))];
+  selectedCats=new Set(cts); updateChipUi(); applyFilter();
+}
+function clearCats() { selectedCats=new Set(); updateChipUi(); applyFilter(); }
+function selectDataCats() {
+  const cts=[...new Set(leads.map(l=>l.category).filter(Boolean))];
+  selectedCats=new Set(cts.filter(c=>catStatus[c]===true));
+  updateChipUi(); applyFilter();
+}
+function updateChipUi() {
+  const cts=[...new Set(leads.map(l=>l.category).filter(Boolean))];
+  cts.forEach(c=>{
+    const el=document.getElementById('fchip-'+c.replace(/\s/g,'_'));
+    if (el) el.className='fchip'+(selectedCats.has(c)?' on':'');
+  });
+}
+function setSentFilter(v) {
+  sentFilter=v;
+  ['all','n','y'].forEach(k=>document.getElementById('fs-'+k).classList.remove('on'));
+  document.getElementById('fs-'+(v||'all')).classList.add('on');
+  applyFilter();
 }
 function applyFilter() {
-  const catF=document.getElementById('filter-cat').value;
-  const sentF=document.getElementById('filter-sent').value;
   filteredLeads=leads.filter(l=>{
-    if (catF&&l.category!==catF) return false;
-    if (sentF==='y'&&!l.sentAt) return false;
-    if (sentF==='n'&&l.sentAt) return false;
+    if (selectedCats.size>0&&!selectedCats.has(l.category)) return false;
+    if (sentFilter==='y'&&!l.sentAt) return false;
+    if (sentFilter==='n'&&l.sentAt) return false;
     return true;
   });
   renderLeads();
